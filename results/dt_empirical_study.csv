@@ -1,36 +1,36 @@
 dataset,method,test_acc_mean,test_mcc_mean,depth_mean,n_leaves_mean,fit_time_mean
-Banknote,CCP,0.98,0.97,7.0,21.2,0.287
-Banknote,ES,0.98,0.97,7.2,26.3,0.007
-Banknote,ES_Interp,0.98,0.97,7.2,26.3,0.007
-Banknote,MD,0.98,0.97,7.2,26.3,0.004
-Banknote,TS,0.98,0.97,7.0,21.1,0.283
-Haberman,CCP,0.72,0.21,2.7,4.7,0.304
-Haberman,ES,0.74,0.26,3.3,9.1,0.002
-Haberman,ES_Interp,0.73,0.25,2.6,9.1,0.002
-Haberman,MD,0.65,0.11,15.5,90.9,0.001
-Haberman,TS,0.73,0.23,2.9,5.9,0.073
-Ozone,CCP,0.93,0.08,2.7,4.6,18.157
-Ozone,ES,0.93,0.21,4.1,14.7,0.077
-Ozone,ES_Interp,0.93,0.16,3.4,14.7,0.077
-Ozone,MD,0.91,0.25,14.9,98.1,0.091
-Ozone,TS,0.93,0.08,2.5,4.3,3.734
-Pima Indians,CCP,0.74,0.42,4.4,8.9,1.19
-Pima Indians,ES,0.74,0.41,2.8,7.2,0.005
-Pima Indians,ES_Interp,0.74,0.41,2.1,7.2,0.005
-Pima Indians,MD,0.7,0.35,14.7,121.7,0.004
-Pima Indians,TS,0.74,0.41,2.9,5.6,0.144
-SA Heart,CCP,0.7,0.3,3.0,5.3,0.7
-SA Heart,ES,0.67,0.27,1.0,2.0,0.003
-SA Heart,ES_Interp,0.65,0.0,0.0,2.0,0.003
-SA Heart,MD,0.62,0.16,14.0,84.5,0.003
-SA Heart,TS,0.67,0.24,1.9,2.9,0.023
-Spam,CCP,0.92,0.84,17.1,80.4,42.845
-Spam,ES,0.89,0.78,3.9,13.5,0.11
-Spam,ES_Interp,0.88,0.75,3.1,13.5,0.11
-Spam,MD,0.92,0.82,31.2,266.8,0.078
-Spam,TS,0.91,0.8,4.9,20.2,2.312
-Wisc. Breast Cancer,CCP,0.95,0.89,5.2,10.7,0.147
-Wisc. Breast Cancer,ES,0.95,0.89,3.9,12.8,0.005
-Wisc. Breast Cancer,ES_Interp,0.95,0.88,3.2,12.8,0.005
+Banknote,CCP,0.98,0.97,7.0,20.8,0.271
+Banknote,ES,0.99,0.97,7.2,26.4,0.007
+Banknote,ES_Interp,0.98,0.97,7.2,26.4,0.007
+Banknote,MD,0.99,0.97,7.2,26.4,0.003
+Banknote,TS,0.98,0.97,7.0,20.8,0.268
+Haberman,CCP,0.72,0.21,2.8,4.7,0.282
+Haberman,ES,0.74,0.25,3.3,9.0,0.002
+Haberman,ES_Interp,0.74,0.24,2.6,9.0,0.002
+Haberman,MD,0.65,0.12,15.6,91.1,0.001
+Haberman,TS,0.73,0.22,3.0,6.1,0.068
+Ozone,CCP,0.93,0.08,2.6,4.5,16.555
+Ozone,ES,0.93,0.22,4.1,14.7,0.076
+Ozone,ES_Interp,0.93,0.17,3.4,14.7,0.076
+Ozone,MD,0.91,0.26,14.9,98.0,0.084
+Ozone,TS,0.94,0.07,2.4,4.2,3.456
+Pima Indians,CCP,0.74,0.42,4.3,9.0,1.1
+Pima Indians,ES,0.74,0.4,2.8,7.2,0.005
+Pima Indians,ES_Interp,0.74,0.4,2.1,7.2,0.005
+Pima Indians,MD,0.71,0.36,14.7,122.0,0.003
+Pima Indians,TS,0.74,0.41,2.9,5.6,0.141
+SA Heart,CCP,0.7,0.3,3.0,5.2,0.644
+SA Heart,ES,0.67,0.25,1.0,2.0,0.004
+SA Heart,ES_Interp,0.65,0.0,0.0,2.0,0.004
+SA Heart,MD,0.62,0.17,14.1,84.6,0.003
+SA Heart,TS,0.67,0.24,1.9,2.9,0.022
+Spam,CCP,0.92,0.84,17.4,81.4,40.75
+Spam,ES,0.89,0.78,3.9,13.5,0.131
+Spam,ES_Interp,0.88,0.75,3.1,13.5,0.131
+Spam,MD,0.92,0.82,31.1,266.6,0.075
+Spam,TS,0.91,0.8,4.9,20.2,2.26
+Wisc. Breast Cancer,CCP,0.95,0.89,5.2,10.8,0.143
+Wisc. Breast Cancer,ES,0.95,0.89,3.9,12.7,0.006
+Wisc. Breast Cancer,ES_Interp,0.95,0.88,3.2,12.7,0.006
 Wisc. Breast Cancer,MD,0.95,0.88,8.5,29.4,0.001
-Wisc. Breast Cancer,TS,0.95,0.89,4.4,9.8,0.115
+Wisc. Breast Cancer,TS,0.95,0.89,4.3,9.5,0.112
