@@ -14,8 +14,8 @@ from model_builder import build_rf_clf
 
 # Random seed for reproducibility
 RANDOM_SEED = 7
-N_ESTIMATORS = 1
-N_ITERATIONS = 11  # Number of Monte Carlo iterations
+N_ESTIMATORS = 50
+N_ITERATIONS = 200  # Number of Monte Carlo iterations
 N_JOBS = -1  # für alle Kerne -1
 
 # Define dataset names instead of IDs
@@ -43,8 +43,8 @@ def load_dataset(dataset_name):
         y = (y.astype(int) == 2).astype(int).to_numpy()
     elif dataset_name == "Ozone":
         dataset = fetch_openml(data_id=1487, as_frame=True)
-        X = dataset.data.to_numpy()
-        y = (dataset.target == "1").astype(int).to_numpy()
+        X = dataset['data'].to_numpy()
+        y = (dataset['target'] == "1").astype(int).to_numpy()
     elif dataset_name == "SA Heart":
         dataset = datasets.get_dataset(1498)
         X, y, _, _ = dataset.get_data(target=dataset.default_target_attribute)
@@ -80,25 +80,25 @@ def load_dataset(dataset_name):
 
 # Define algorithm configurations
 ALGORITHM_CONFIGS = [
-    {
-        "algorithm": "FMSE",
-        "vote_probability": False,
-        "algorithm_name": "FMSE",
-        "es_offset": 0,
-    },
+    # {
+    #     "algorithm": "FMSE",
+    #     "vote_probability": False,
+    #     "algorithm_name": "FMSE",
+    #     "es_offset": 0,
+    # },
     # {
     #     "algorithm_name": "ICCP",
     #     "algorithm": "CCP",
     #     "kappa": "no_es",
     #     "max_features": "sqrt",
     # },
-    {
-        "algorithm": "UES",
-        "kappa": "1nn",
-        "max_features": "sqrt",
-        "estimate_noise_before_sampling": True,
-        "es_offset": 0,
-    },
+    # {
+    #     "algorithm": "UES",
+    #     "kappa": "1nn",
+    #     "max_features": "sqrt",
+    #     "estimate_noise_before_sampling": True,
+    #     "es_offset": 0,
+    # },
     {
         "algorithm_name": "IGES",
         "algorithm": "IES",
@@ -109,7 +109,7 @@ ALGORITHM_CONFIGS = [
         "rf_train_mse": True,
     },
     {
-        "algorithm_name": "IGES_2",
+        "algorithm_name": "IGES_factor",
         "algorithm": "IES",
         "kappa": "1nn",
         "max_features": "sqrt_factor",  # This will be calculated dynamically
@@ -126,7 +126,7 @@ ALGORITHM_CONFIGS = [
         "es_offset": 0,
     },
     {
-        "algorithm_name": "ILES_2",
+        "algorithm_name": "ILES_factor",
         "algorithm": "IES", 
         "kappa": "1nn",
         "max_features": "sqrt_factor",  # This will be calculated dynamically
@@ -138,12 +138,23 @@ ALGORITHM_CONFIGS = [
         "max_features": "sqrt",
     },
     {
+        "algorithm": "MD_scikit_factor",
+        "max_features": "sqrt_factor",  # This will be calculated dynamically
+    },
+    {
         "algorithm": "MD_custom",
         "kappa": "no_es",
         "max_features": "sqrt",
         "estimate_noise_before_sampling": True,
         "es_offset": 0,
-    }
+    },
+    {
+        "algorithm": "MD_custom_factor",
+        "kappa": "no_es",
+        "max_features": "sqrt_factor",  # This will be calculated dynamically
+        "estimate_noise_before_sampling": True,
+        "es_offset": 0,
+    },
 ]
 
 
@@ -353,7 +364,7 @@ def main():
             metrics = [
                 #"train_acc",
                 "test_acc",
-                #"mcc_test",
+                "mcc_test",
                 #"f1_test",
                 #"log_loss_test",
                 "mean_depth",

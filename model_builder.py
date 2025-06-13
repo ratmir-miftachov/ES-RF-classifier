@@ -78,13 +78,14 @@ def build_rf_clf(
     vote_probability = True,
     ues_time_track = False,
 ):
+    fit_duration = 0.0  # Initialize fit_duration
     if algorithm == "MD_scikit":
         rf = scikit_rf(
             n_estimators=n_estimators,
             criterion="gini",
             max_depth=None,
             min_samples_split=2,
-            max_features=max_features,  # either a number, None or "sqrt", .... In our case None or sqrt
+            max_features=max_features,  # either a number, None or "sqrt", 
             bootstrap=True,
             oob_score=False,
             ccp_alpha=0.0,
@@ -205,4 +206,37 @@ def build_rf_clf(
         start_time_rf = time.time()
         rf = rf.fit(X_train, y_train, f_train=f_train)
         fit_duration = time.time() - start_time_rf
+    elif algorithm == "MD_scikit_factor":
+        rf = scikit_rf(
+            n_estimators=n_estimators,
+            criterion="gini",
+            max_depth=None,
+            min_samples_split=2,
+            max_features=max_features,  # This will be the sqrt_factor value
+            bootstrap=True,
+            oob_score=False,
+            ccp_alpha=0.0,
+            max_samples=None,
+            n_jobs=None,
+            random_state=random_state,
+        )
+        start_time_rf = time.time()
+        rf.fit(X_train, y_train)
+        end_time_rf = time.time()
+        fit_duration = end_time_rf - start_time_rf
+    elif algorithm == "MD_custom_factor":
+        rf = ESGlobalRF.RandomForestClassifier(
+            n_estimators=n_estimators,
+            max_depth=None,
+            max_features=max_features,  # This will be the sqrt_factor value
+            estimate_noise_before_sampling=estimate_noise_before_sampling,
+            kappa="no_es",
+            random_state=random_state,
+        )
+        start_time_rf = time.time()
+        rf.fit(X_train, y_train)
+        end_time_rf = time.time()
+        fit_duration = end_time_rf - start_time_rf
+    else:
+        raise ValueError(f"Unknown algorithm: {algorithm}")
     return rf, fit_duration
