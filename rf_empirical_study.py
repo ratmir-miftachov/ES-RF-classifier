@@ -14,8 +14,8 @@ from model_builder import build_rf_clf
 
 # Random seed for reproducibility
 RANDOM_SEED = 7
-N_ESTIMATORS = 50
-N_ITERATIONS = 200  # Number of Monte Carlo iterations
+N_ESTIMATORS = 5
+N_ITERATIONS = 22  # Number of Monte Carlo iterations
 N_JOBS = -1  # für alle Kerne -1
 
 # Define dataset names instead of IDs
@@ -141,20 +141,20 @@ ALGORITHM_CONFIGS = [
         "algorithm": "MD_scikit_factor",
         "max_features": "sqrt_factor",  # This will be calculated dynamically
     },
-    {
-        "algorithm": "MD_custom",
-        "kappa": "no_es",
-        "max_features": "sqrt",
-        "estimate_noise_before_sampling": True,
-        "es_offset": 0,
-    },
-    {
-        "algorithm": "MD_custom_factor",
-        "kappa": "no_es",
-        "max_features": "sqrt_factor",  # This will be calculated dynamically
-        "estimate_noise_before_sampling": True,
-        "es_offset": 0,
-    },
+    # {
+    #     "algorithm": "MD_custom",
+    #     "kappa": "no_es",
+    #     "max_features": "sqrt",
+    #     "estimate_noise_before_sampling": True,
+    #     "es_offset": 0,
+    # },
+    # {
+    #     "algorithm": "MD_custom_factor",
+    #     "kappa": "no_es",
+    #     "max_features": "sqrt_factor",  # This will be calculated dynamically
+    #     "estimate_noise_before_sampling": True,
+    #     "es_offset": 0,
+    # },
 ]
 
 
