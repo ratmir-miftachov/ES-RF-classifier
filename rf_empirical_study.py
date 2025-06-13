@@ -371,8 +371,8 @@ def main():
                 if metric in dataset_algo_df.columns:
                     values = dataset_algo_df[metric].dropna()
                     if not values.empty:
-                        #aggregate_result[f"{metric} (mean)"] = values.mean()
-                        aggregate_result[f"{metric} (median)"] = values.median()
+                        aggregate_result[f"{metric} (mean)"] = values.mean()
+                        #aggregate_result[f"{metric} (median)"] = values.median()
 
             agg_results.append(aggregate_result)
 
