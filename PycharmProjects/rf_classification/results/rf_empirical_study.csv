@@ -1,0 +1,50 @@
+dataset,algorithm_name,test_acc (mean),mean_depth (mean),mean_n_leaves (mean)
+Banknote,FMSE,0.99,5.5,19.0
+Banknote,UES,0.99,7.9,26.0
+Banknote,IGES,0.99,8.3,26.6
+Banknote,ILES,0.99,8.3,26.6
+Banknote,ILES_1.5,0.99,7.1,21.9
+Banknote,MD_scikit,0.99,8.3,26.6
+Banknote,MD_custom,0.99,8.1,26.1
+SA Heart,FMSE,0.66,1.0,2.0
+SA Heart,UES,0.66,1.0,2.0
+SA Heart,IGES,0.65,0.0,1.0
+SA Heart,ILES,0.65,0.1,1.1
+SA Heart,ILES_1.5,0.65,0.1,1.1
+SA Heart,MD_scikit,0.68,13.4,71.0
+SA Heart,MD_custom,0.68,13.4,71.1
+Pima Indians,FMSE,0.75,2.8,7.0
+Pima Indians,UES,0.76,4.0,15.7
+Pima Indians,IGES,0.75,5.4,32.0
+Pima Indians,ILES,0.74,3.4,11.5
+Pima Indians,ILES_1.5,0.75,2.5,6.0
+Pima Indians,MD_scikit,0.76,15.1,118.8
+Pima Indians,MD_custom,0.75,15.2,119.0
+Haberman,FMSE,0.74,3.2,8.8
+Haberman,UES,0.74,4.0,13.7
+Haberman,IGES,0.73,8.0,34.1
+Haberman,ILES,0.74,3.2,8.7
+Haberman,ILES_1.5,0.75,2.3,5.6
+Haberman,MD_scikit,0.71,13.3,71.3
+Haberman,MD_custom,0.71,13.3,71.4
+Ozone,FMSE,0.94,3.8,12.9
+Ozone,UES,0.94,4.8,21.3
+Ozone,IGES,0.94,7.2,47.5
+Ozone,ILES,0.94,4.1,15.0
+Ozone,ILES_1.5,0.94,3.7,12.6
+Ozone,MD_scikit,0.95,14.4,91.5
+Ozone,MD_custom,0.94,14.5,91.5
+Spam,FMSE,0.91,3.8,13.4
+Spam,UES,0.93,6.1,42.6
+Spam,IGES,0.9,6.6,52.0
+Spam,ILES,0.89,5.9,38.4
+Spam,ILES_1.5,0.9,4.6,21.1
+Spam,MD_scikit,0.95,32.6,322.4
+Spam,MD_custom,0.95,32.0,324.2
+Wisc. Breast Cancer,FMSE,0.97,3.2,8.8
+Wisc. Breast Cancer,UES,0.97,4.5,14.3
+Wisc. Breast Cancer,IGES,0.96,6.9,22.2
+Wisc. Breast Cancer,ILES,0.96,3.9,11.9
+Wisc. Breast Cancer,ILES_1.5,0.96,3.5,9.6
+Wisc. Breast Cancer,MD_scikit,0.97,8.7,26.3
+Wisc. Breast Cancer,MD_custom,0.96,8.7,26.3
