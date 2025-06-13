@@ -265,7 +265,6 @@ dataset_names = [
     "Pima Indians",
     "Haberman",
     "Ozone",
-    "SA Heart",
     "Spam",
     "Wisc. Breast Cancer",
     "Banknote",

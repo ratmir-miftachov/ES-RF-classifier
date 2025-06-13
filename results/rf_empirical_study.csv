@@ -1,43 +1,43 @@
 dataset,algorithm_name,test_acc (mean),mcc_test (mean),mean_depth (mean),mean_n_leaves (mean)
-Banknote,IGES,0.99,0.98,8.2,26.5
-Banknote,IGES_factor,0.99,0.98,7.1,22.0
-Banknote,ILES,0.99,0.98,8.2,26.5
-Banknote,ILES_factor,0.99,0.98,7.1,22.0
-Banknote,MD_scikit,0.99,0.99,8.3,26.5
-Banknote,MD_scikit_factor,0.99,0.98,7.1,22.0
-SA Heart,IGES,0.65,0.0,0.0,1.0
-SA Heart,IGES_factor,0.64,0.01,0.0,1.0
-SA Heart,ILES,0.64,0.0,0.1,1.1
-SA Heart,ILES_factor,0.64,0.0,0.1,1.1
-SA Heart,MD_scikit,0.68,0.27,13.4,71.0
-SA Heart,MD_scikit_factor,0.68,0.26,12.7,61.3
-Pima Indians,IGES,0.75,0.43,5.5,33.4
-Pima Indians,IGES_factor,0.75,0.44,3.8,14.3
-Pima Indians,ILES,0.74,0.39,3.5,11.7
-Pima Indians,ILES_factor,0.74,0.41,2.5,6.2
-Pima Indians,MD_scikit,0.76,0.46,15.2,118.8
-Pima Indians,MD_scikit_factor,0.76,0.46,13.6,89.1
-Haberman,IGES,0.72,0.17,8.3,34.6
-Haberman,IGES_factor,0.71,0.16,6.6,29.5
-Haberman,ILES,0.73,0.14,3.3,9.0
-Haberman,ILES_factor,0.74,0.23,2.4,5.9
-Haberman,MD_scikit,0.7,0.14,13.2,71.0
-Haberman,MD_scikit_factor,0.68,0.12,12.7,57.6
-Ozone,IGES,0.94,0.24,7.0,45.4
-Ozone,IGES_factor,0.94,0.25,6.5,38.6
-Ozone,ILES,0.94,0.07,4.0,14.4
-Ozone,ILES_factor,0.94,0.09,3.6,12.1
-Ozone,MD_scikit,0.95,0.33,14.4,91.2
-Ozone,MD_scikit_factor,0.94,0.33,14.1,80.8
-Spam,IGES,0.91,0.8,6.4,48.9
-Spam,IGES_factor,0.9,0.8,5.0,25.8
-Spam,ILES,0.9,0.78,5.7,36.2
-Spam,ILES_factor,0.9,0.79,4.5,20.5
-Spam,MD_scikit,0.95,0.9,32.6,322.1
-Spam,MD_scikit_factor,0.95,0.9,29.1,244.3
-Wisc. Breast Cancer,IGES,0.97,0.93,6.7,21.6
-Wisc. Breast Cancer,IGES_factor,0.97,0.92,6.1,18.0
-Wisc. Breast Cancer,ILES,0.96,0.92,3.8,11.5
-Wisc. Breast Cancer,ILES_factor,0.96,0.92,3.4,9.5
-Wisc. Breast Cancer,MD_scikit,0.97,0.93,8.8,26.5
-Wisc. Breast Cancer,MD_scikit_factor,0.96,0.92,7.9,22.0
+Banknote,UGES,0.98,0.96,7.0,24.3
+Banknote,IGES,0.98,0.95,8.4,27.5
+Banknote,IGES_factor,0.98,0.96,6.8,21.5
+Banknote,ILES,0.98,0.95,8.4,27.5
+Banknote,ILES_factor,0.98,0.96,6.8,21.5
+Banknote,MD_scikit,0.98,0.95,8.4,27.8
+Banknote,MD_scikit_factor,0.98,0.96,7.3,22.8
+Pima Indians,UGES,0.7,0.33,3.5,11.7
+Pima Indians,IGES,0.71,0.32,5.5,33.5
+Pima Indians,IGES_factor,0.71,0.33,3.7,13.6
+Pima Indians,ILES,0.7,0.31,3.4,11.4
+Pima Indians,ILES_factor,0.72,0.36,2.5,6.2
+Pima Indians,MD_scikit,0.7,0.3,15.1,120.7
+Pima Indians,MD_scikit_factor,0.71,0.34,12.9,90.4
+Haberman,UGES,0.71,0.2,4.6,18.3
+Haberman,IGES,0.7,0.09,8.0,35.8
+Haberman,IGES_factor,0.72,0.18,7.3,31.5
+Haberman,ILES,0.7,0.03,3.5,10.2
+Haberman,ILES_factor,0.7,0.11,2.7,6.8
+Haberman,MD_scikit,0.68,0.07,13.9,70.3
+Haberman,MD_scikit_factor,0.66,0.04,12.6,55.9
+Ozone,UGES,0.93,0.24,4.6,19.2
+Ozone,IGES,0.9,0.25,7.0,46.9
+Ozone,IGES_factor,0.91,0.29,6.5,39.4
+Ozone,ILES,0.92,0.2,3.8,13.4
+Ozone,ILES_factor,0.93,0.27,3.5,11.0
+Ozone,MD_scikit,0.89,0.34,13.2,90.7
+Ozone,MD_scikit_factor,0.88,0.32,14.7,81.5
+Spam,UGES,0.88,0.76,5.0,25.6
+Spam,IGES,0.88,0.75,6.7,53.7
+Spam,IGES_factor,0.89,0.76,5.1,24.7
+Spam,ILES,0.86,0.72,6.0,41.0
+Spam,ILES_factor,0.88,0.75,4.6,20.1
+Spam,MD_scikit,0.9,0.8,32.1,316.5
+Spam,MD_scikit_factor,0.91,0.82,28.9,246.0
+Wisc. Breast Cancer,UGES,0.97,0.93,4.1,13.2
+Wisc. Breast Cancer,IGES,0.96,0.91,6.8,23.4
+Wisc. Breast Cancer,IGES_factor,0.95,0.9,5.9,17.1
+Wisc. Breast Cancer,ILES,0.95,0.89,3.8,11.9
+Wisc. Breast Cancer,ILES_factor,0.95,0.89,3.3,8.7
+Wisc. Breast Cancer,MD_scikit,0.94,0.88,9.0,26.8
+Wisc. Breast Cancer,MD_scikit_factor,0.94,0.88,8.0,24.0

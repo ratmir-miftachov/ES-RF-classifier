@@ -14,14 +14,13 @@ from model_builder import build_rf_clf
 
 # Random seed for reproducibility
 RANDOM_SEED = 7
-N_ESTIMATORS = 50
-N_ITERATIONS = 200  # Number of Monte Carlo iterations
+N_ESTIMATORS = 2
+N_ITERATIONS = 11  # Number of Monte Carlo iterations
 N_JOBS = -1  # für alle Kerne -1
 
 # Define dataset names instead of IDs
 DATASETS = [
     "Banknote",
-    "SA Heart",
     "Pima Indians",
     "Haberman",
     "Ozone",
@@ -45,11 +44,6 @@ def load_dataset(dataset_name):
         dataset = fetch_openml(data_id=1487, as_frame=True)
         X = dataset['data'].to_numpy()
         y = (dataset['target'] == "1").astype(int).to_numpy()
-    elif dataset_name == "SA Heart":
-        dataset = datasets.get_dataset(1498)
-        X, y, _, _ = dataset.get_data(target=dataset.default_target_attribute)
-        X = X.astype(float).to_numpy()
-        y = (y == "2").astype(int).to_numpy()
     elif dataset_name == "Spam":
         dataset = datasets.get_dataset(44)
         X, y, _, _ = dataset.get_data(target=dataset.default_target_attribute)
@@ -80,12 +74,12 @@ def load_dataset(dataset_name):
 
 # Define algorithm configurations
 ALGORITHM_CONFIGS = [
-    # {
-    #     "algorithm": "FMSE",
-    #     "vote_probability": False,
-    #     "algorithm_name": "FMSE",
-    #     "es_offset": 0,
-    # },
+    {
+        "algorithm": "UGES",
+        "vote_probability": False,
+        "algorithm_name": "UGES",
+        "es_offset": 0,
+    },
     # {
     #     "algorithm_name": "ICCP",
     #     "algorithm": "CCP",
