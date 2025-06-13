@@ -6,8 +6,5 @@ __pycache__/
 .idea/
 .vscode/
 
-# Results
-results/
-
 # Mac OS
 .DS_Store 
