@@ -65,7 +65,10 @@ def run_single_iteration(seed):
     residuals_k1 = np.mean((y_train - train_proba_k1[:,1])**2)
     # überprüft: residuals unterschreiten korrekt das kappa. Bei interpolation hält kappa=interpoalted_prob.
 
-    alpha = 1 - np.sqrt(1 - (residuals_k - mean_estimated_train_noise) / (residuals_k - residuals_k1))
+    if np.isclose(residuals_k, residuals_k1):
+        alpha = 0.0
+    else:
+        alpha = 1 - np.sqrt(1 - (residuals_k - mean_estimated_train_noise) / (residuals_k - residuals_k1))
 
     #train_proba_interpolated = (1 - alpha) * train_proba_k + alpha * train_proba_k1
     #residuals_interpolated = np.mean((y_train - train_proba_interpolated[:,1])**2) # verified: interpolation works perfectly.
