@@ -15,7 +15,7 @@ import noise_level_estimator as noise_est
 from clean_dt import DecisionTreeLevelWise
 from model_builder import build_post_pruned_dt_clf
 
-n_iterations = 11
+n_iterations = 44
 
 print(f"Using {cpu_count()} CPU cores for parallel processing")
 
