@@ -261,12 +261,12 @@ def generate_y_f_classification_additive_models(X, dgp_name):
 
 
 def generate_X_y_f_classification(
-    dgp_name,  # indicating which DGP to use - NO DEFAULT, must be specified explicitly
-    bernoulli_p,  # for 2 dim case - NO DEFAULT, must be specified explicitly  
-    n_samples,  # size of dateset (train + test) - NO DEFAULT, must be specified explicitly
-    feature_dim,  # for additive models - NO DEFAULT, must be specified explicitly
-    random_state,  # random seed - NO DEFAULT, must be specified explicitly
-    n_ticks_per_ax_meshgrid=None,  # for 2 dim case - only this can be None
+    dgp_name,  
+    bernoulli_p,  
+    n_samples,  # size of dateset (train + test) 
+    feature_dim,  # for additive models 
+    random_state,  # random seed 
+    n_ticks_per_ax_meshgrid=None,  # for 2 dim case 
 ):
     np.random.seed(random_state)
     if dgp_name in ["circular", "smooth_signal", "rectangular", "sine_cosine"]:

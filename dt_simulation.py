@@ -14,7 +14,7 @@ from clean_dt import DecisionTreeLevelWise
 from model_builder import build_post_pruned_dt_clf
 import data_generation
 
-n_iterations = 33
+n_iterations = 300
 
 print(f"Using {cpu_count()} CPU cores for parallel processing")
 
