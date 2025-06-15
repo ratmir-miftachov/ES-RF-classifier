@@ -1,41 +1,41 @@
 dataset,method,test_acc_median,test_mcc_median,depth_median,n_leaves_median,fit_time_median
-Add. H.I. Jump,CCP,0.81,0.62,3.0,6.0,6.327
-Add. H.I. Jump,ES,0.8,0.59,4.0,16.0,0.014
-Add. H.I. Jump,ES_Interp,0.8,0.61,3.7,16.0,0.014
-Add. H.I. Jump,MD,0.74,0.49,16.0,109.0,0.025
-Add. H.I. Jump,TS,0.8,0.62,3.0,6.0,1.504
-Add. Het.,CCP,0.82,0.63,5.0,10.0,6.208
-Add. Het.,ES,0.8,0.61,5.0,28.0,0.016
-Add. Het.,ES_Interp,0.81,0.62,4.5,28.0,0.016
-Add. Het.,MD,0.77,0.54,13.0,96.0,0.024
-Add. Het.,TS,0.82,0.63,5.0,10.0,2.746
-Add. Jump,CCP,0.88,0.76,3.0,4.0,2.991
-Add. Jump,ES,0.88,0.76,3.0,8.0,0.01
-Add. Jump,ES_Interp,0.88,0.76,2.5,8.0,0.01
-Add. Jump,MD,0.86,0.7,12.0,68.0,0.022
-Add. Jump,TS,0.88,0.76,3.0,4.0,0.499
-Add. Smooth,CCP,0.7,0.43,4.0,7.0,7.907
-Add. Smooth,ES,0.71,0.43,4.0,15.0,0.012
-Add. Smooth,ES_Interp,0.71,0.44,3.0,15.0,0.012
-Add. Smooth,MD,0.67,0.34,15.0,132.0,0.026
-Add. Smooth,TS,0.7,0.42,3.0,6.0,0.985
-Circular,CCP,0.77,0.43,5.0,6.0,1.389
-Circular,ES,0.76,0.4,4.0,16.0,0.001
-Circular,ES_Interp,0.76,0.41,3.9,16.0,0.001
-Circular,MD,0.67,0.23,23.0,266.0,0.002
-Circular,TS,0.77,0.42,4.0,5.0,0.164
-Circular Smooth,CCP,0.78,0.46,5.0,7.0,1.19
-Circular Smooth,ES,0.77,0.44,5.0,20.0,0.002
-Circular Smooth,ES_Interp,0.78,0.46,4.1,20.0,0.002
-Circular Smooth,MD,0.71,0.31,20.0,228.0,0.002
-Circular Smooth,TS,0.78,0.45,5.0,6.0,0.163
-Rectangular,CCP,0.79,0.39,4.0,5.0,1.292
-Rectangular,ES,0.78,0.36,4.0,14.0,0.001
-Rectangular,ES_Interp,0.78,0.37,3.4,14.0,0.001
-Rectangular,MD,0.68,0.17,23.0,262.0,0.002
-Rectangular,TS,0.79,0.39,4.0,5.0,0.148
-Sine Cosine,CCP,0.61,0.23,9.0,18.0,2.3
-Sine Cosine,ES,0.59,0.18,5.0,24.0,0.001
-Sine Cosine,ES_Interp,0.56,0.14,4.4,24.0,0.001
-Sine Cosine,MD,0.56,0.11,25.0,338.0,0.002
-Sine Cosine,TS,0.61,0.22,6.0,11.0,0.2
+Add. H.I. Jump,CCP,0.8,0.61,3.0,6.0,5.321
+Add. H.I. Jump,ES,0.79,0.59,5.0,24.0,0.013
+Add. H.I. Jump,ES_Interp,0.8,0.61,4.0,24.0,0.013
+Add. H.I. Jump,MD,0.74,0.49,16.0,110.0,0.021
+Add. H.I. Jump,TS,0.8,0.61,3.0,7.0,1.54
+Add. Het.,CCP,0.82,0.63,5.0,10.0,4.688
+Add. Het.,ES,0.8,0.61,5.0,28.0,0.013
+Add. Het.,ES_Interp,0.81,0.62,4.5,28.0,0.013
+Add. Het.,MD,0.78,0.55,13.0,98.0,0.019
+Add. Het.,TS,0.82,0.64,5.0,9.0,2.052
+Add. Jump,CCP,0.88,0.77,4.0,5.0,2.606
+Add. Jump,ES,0.88,0.76,3.0,8.0,0.009
+Add. Jump,ES_Interp,0.88,0.76,2.4,8.0,0.009
+Add. Jump,MD,0.86,0.71,13.0,65.0,0.019
+Add. Jump,TS,0.88,0.77,3.0,4.0,0.444
+Add. Smooth,CCP,0.7,0.42,4.0,7.0,6.732
+Add. Smooth,ES,0.7,0.4,4.0,15.0,0.01
+Add. Smooth,ES_Interp,0.7,0.42,3.1,15.0,0.01
+Add. Smooth,MD,0.66,0.33,15.0,132.0,0.021
+Add. Smooth,TS,0.7,0.42,4.0,6.0,0.988
+Circular,CCP,0.77,0.44,4.0,5.0,1.22
+Circular,ES,0.76,0.42,4.0,16.0,0.002
+Circular,ES_Interp,0.76,0.42,3.7,16.0,0.002
+Circular,MD,0.67,0.24,23.0,263.5,0.002
+Circular,TS,0.77,0.43,4.0,5.0,0.162
+Circular Smooth,CCP,0.78,0.46,5.0,7.0,1.11
+Circular Smooth,ES,0.78,0.45,5.0,21.0,0.002
+Circular Smooth,ES_Interp,0.78,0.46,4.1,21.0,0.002
+Circular Smooth,MD,0.71,0.32,20.0,227.0,0.002
+Circular Smooth,TS,0.78,0.46,5.0,6.0,0.185
+Rectangular,CCP,0.79,0.39,4.0,5.0,1.186
+Rectangular,ES,0.78,0.37,4.0,15.0,0.001
+Rectangular,ES_Interp,0.78,0.37,3.4,15.0,0.001
+Rectangular,MD,0.68,0.17,23.0,260.0,0.002
+Rectangular,TS,0.79,0.39,4.0,5.0,0.143
+Sine Cosine,CCP,0.61,0.22,8.0,15.0,1.956
+Sine Cosine,ES,0.59,0.19,5.0,20.0,0.002
+Sine Cosine,ES_Interp,0.57,0.15,4.2,20.0,0.002
+Sine Cosine,MD,0.56,0.11,25.0,336.0,0.002
+Sine Cosine,TS,0.6,0.21,6.0,13.0,0.193
