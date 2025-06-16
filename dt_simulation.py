@@ -14,7 +14,7 @@ from clean_dt import DecisionTreeLevelWise
 from model_builder import build_post_pruned_dt_clf
 import data_generation
 
-n_iterations = 300
+n_iterations = 55
 
 print(f"Using {cpu_count()} CPU cores for parallel processing")
 
@@ -193,6 +193,102 @@ def run_single_iteration(seed, dgp_config):
         "n_leaves": dt_ts.get_n_leaves(),
         #"noise_estimate": mean_estimated_train_noise,
         "fit_time": fit_time,
+    })
+    
+    # === ORACLE CALCULATIONS ===
+    
+    # ES Oracle: Test all possible depths and find optimal for accuracy and MCC
+    max_test_depth = dt_md.get_depth()  # Use MD tree's max depth as upper bound
+    
+    acc_scores_es = []
+    mcc_scores_es = []
+    
+    for depth in range(1, max_test_depth + 1):
+        dt_temp = DecisionTreeClassifier(
+            max_depth=depth, min_samples_split=2, max_features=None, random_state=42
+        )
+        dt_temp.fit(X_train, y_train)
+        y_pred_temp = dt_temp.predict(X_test)
+        
+        acc_temp = np.mean(y_pred_temp == y_test)
+        mcc_temp = matthews_corrcoef(y_test, y_pred_temp)
+        
+        acc_scores_es.append(acc_temp)
+        mcc_scores_es.append(mcc_temp)
+    
+    # Find optimal depths
+    es_oracle_acc_depth = np.argmax(acc_scores_es) + 1
+    es_oracle_mcc_depth = np.argmax(mcc_scores_es) + 1
+    es_oracle_acc_score = np.max(acc_scores_es)
+    es_oracle_mcc_score = np.max(mcc_scores_es)
+    
+        # Choose the depth that gives the best MCC (primary metric for classification)
+    es_oracle_depth = es_oracle_mcc_depth
+    es_oracle_acc = acc_scores_es[es_oracle_depth - 1]
+    es_oracle_mcc = es_oracle_mcc_score
+    
+    # Build the optimal ES tree to get number of leaves
+    dt_es_oracle = DecisionTreeClassifier(
+        max_depth=es_oracle_depth, min_samples_split=2, max_features=None, random_state=42
+    )
+    dt_es_oracle.fit(X_train, y_train)
+    
+    iteration_results.append({
+        "method": "ES_Oracle",
+        "test_acc": es_oracle_acc,
+        "test_mcc": es_oracle_mcc,
+        "depth": es_oracle_depth,
+        "n_leaves": dt_es_oracle.get_n_leaves(),
+        "fit_time": 0.0,  # Oracle doesn't have fit time
+    })
+    
+    # CCP Oracle: Test all possible alpha values and find optimal for accuracy and MCC
+    # First get the alpha path from an unpruned tree
+    dt_full = DecisionTreeClassifier(max_depth=None, min_samples_split=2, random_state=42)
+    dt_full.fit(X_train, y_train)
+    path = dt_full.cost_complexity_pruning_path(X_train, y_train)
+    alpha_sequence = path.ccp_alphas[:-1]  # Exclude last alpha (empty tree)
+    
+    acc_scores_ccp = []
+    mcc_scores_ccp = []
+    
+    for alpha in alpha_sequence:
+        dt_temp = DecisionTreeClassifier(
+            ccp_alpha=alpha, min_samples_split=2, random_state=42
+        )
+        dt_temp.fit(X_train, y_train)
+        y_pred_temp = dt_temp.predict(X_test)
+        
+        acc_temp = np.mean(y_pred_temp == y_test)
+        mcc_temp = matthews_corrcoef(y_test, y_pred_temp)
+        
+        acc_scores_ccp.append(acc_temp)
+        mcc_scores_ccp.append(mcc_temp)
+    
+    # Find optimal alphas
+    ccp_oracle_acc_idx = np.argmax(acc_scores_ccp)
+    ccp_oracle_mcc_idx = np.argmax(mcc_scores_ccp)
+    ccp_oracle_acc_score = np.max(acc_scores_ccp)
+    ccp_oracle_mcc_score = np.max(mcc_scores_ccp)
+    
+    # Get depths for optimal trees
+    dt_acc_oracle = DecisionTreeClassifier(ccp_alpha=alpha_sequence[ccp_oracle_acc_idx], random_state=42)
+    dt_acc_oracle.fit(X_train, y_train)
+    dt_mcc_oracle = DecisionTreeClassifier(ccp_alpha=alpha_sequence[ccp_oracle_mcc_idx], random_state=42)
+    dt_mcc_oracle.fit(X_train, y_train)
+    
+        # Choose the alpha that gives the best MCC (primary metric for classification)
+    ccp_oracle_alpha_idx = ccp_oracle_mcc_idx
+    ccp_oracle_acc = acc_scores_ccp[ccp_oracle_alpha_idx]
+    ccp_oracle_mcc = ccp_oracle_mcc_score
+    
+    iteration_results.append({
+        "method": "CCP_Oracle",
+        "test_acc": ccp_oracle_acc,
+        "test_mcc": ccp_oracle_mcc,
+        "depth": dt_mcc_oracle.get_depth(),
+        "n_leaves": dt_mcc_oracle.get_n_leaves(),
+        "fit_time": 0.0,  # Oracle doesn't have fit time
     })
     
     return iteration_results

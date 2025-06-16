@@ -15,7 +15,7 @@ from EsGlobalRF import RandomForestClassifier as EsGlobalRF
 from model_builder import build_rf_clf
 import data_generation
 
-n_iterations = 220
+n_iterations = 110
 
 print(f"Using {cpu_count()} CPU cores for parallel processing")
 
@@ -63,6 +63,20 @@ def run_single_iteration(seed, dgp_config):
             "es_offset": 0,
         },
         {
+            "method": "UGES_d",
+            "algorithm": "UGES",
+            "max_features": None,  # mtry=d (all features)
+            "vote_probability": False,
+            "es_offset": 0,
+        },
+        {
+            "method": "UGES_1",
+            "algorithm": "UGES",
+            "max_features": 1,  # mtry=1 (single feature)
+            "vote_probability": False,
+            "es_offset": 0,
+        },
+        {
             "method": "IGES",
             "algorithm": "IES",
             "kappa": "mean_var",  # Use true noise level instead of 1nn
@@ -71,15 +85,24 @@ def run_single_iteration(seed, dgp_config):
             "es_offset": 0,
             "rf_train_mse": True,
         },
-        # {
-        #     "method": "IGES_factor",
-        #     "algorithm": "IES",
-        #     "kappa": "mean_var",  # Use true noise level instead of 1nn
-        #     "max_features": sqrt_factor,
-        #     "estimate_noise_before_sampling": True,
-        #     "es_offset": 0,
-        #     "rf_train_mse": True,
-        # },
+        {
+            "method": "IGES_d",
+            "algorithm": "IES",
+            "kappa": "mean_var",  # Use true noise level instead of 1nn
+            "max_features": None,  # mtry=d (all features)
+            "estimate_noise_before_sampling": True,
+            "es_offset": 0,
+            "rf_train_mse": True,
+        },
+        {
+            "method": "IGES_1",
+            "algorithm": "IES",
+            "kappa": "mean_var",  # Use true noise level instead of 1nn
+            "max_features": 1,  # mtry=1 (single feature)
+            "estimate_noise_before_sampling": True,
+            "es_offset": 0,
+            "rf_train_mse": True,
+        },
         {
             "method": "ILES",
             "algorithm": "IES",
@@ -88,24 +111,37 @@ def run_single_iteration(seed, dgp_config):
             "estimate_noise_before_sampling": True,
             "es_offset": 0,
         },
-        # {
-        #     "method": "ILES_factor",
-        #     "algorithm": "IES",
-        #     "kappa": "mean_var",  # Use true noise level instead of 1nn
-        #     "max_features": sqrt_factor,
-        #     "estimate_noise_before_sampling": True,
-        #     "es_offset": 0,
-        # },
+        {
+            "method": "ILES_d",
+            "algorithm": "IES",
+            "kappa": "mean_var",  # Use true noise level instead of 1nn
+            "max_features": None,  # mtry=d (all features)
+            "estimate_noise_before_sampling": True,
+            "es_offset": 0,
+        },
+        {
+            "method": "ILES_1",
+            "algorithm": "IES",
+            "kappa": "mean_var",  # Use true noise level instead of 1nn
+            "max_features": 1,  # mtry=1 (single feature)
+            "estimate_noise_before_sampling": True,
+            "es_offset": 0,
+        },
         {
             "method": "MD_scikit",
             "algorithm": "MD_scikit",
             "max_features": "sqrt",
         },
-        # {
-        #     "method": "MD_scikit_factor",
-        #     "algorithm": "MD_scikit_factor",
-        #     "max_features": sqrt_factor,
-        # },
+        {
+            "method": "MD_scikit_d",
+            "algorithm": "MD_scikit",
+            "max_features": None,  # mtry=d (all features)
+        },
+        {
+            "method": "MD_scikit_1",
+            "algorithm": "MD_scikit",
+            "max_features": 1,  # mtry=1 (single feature)
+        },
     ]
     
     # Run each RF configuration
@@ -116,13 +152,13 @@ def run_single_iteration(seed, dgp_config):
         rf, ensemble_fit_duration = build_rf_clf(
             X_train=X_train,
             y_train=y_train,
-            f_train=f_train,  # Provide true probabilities for noise estimation
+            f_train=f_train,  # Provide true probabilities for true noise level 
             algorithm=config.get("algorithm"),
             max_features=config.get("max_features"),
             es_offset=config.get("es_offset"),
             rf_train_mse=config.get("rf_train_mse"),
             kappa=config.get("kappa"),
-            n_estimators=50,  # Match empirical study
+            n_estimators=30,  # Match empirical study
             vote_probability=config.get("vote_probability"),
             estimate_noise_before_sampling=config.get("estimate_noise_before_sampling"),
             random_state=seed,
@@ -297,5 +333,3 @@ median_results.to_csv(
     index=False,
 )
 
-print(f"\nResults saved to {os.path.join(output_dir, 'rf_simulation_clean.csv')}")
-print("Simulation completed!") 

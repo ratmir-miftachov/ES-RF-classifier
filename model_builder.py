@@ -202,6 +202,7 @@ def build_rf_clf(
             random_state=random_state,
             vote_probability=vote_probability,
             es_offset=es_offset,
+            max_features=max_features,
         )
         start_time_rf = time.time()
         rf = rf.fit(X_train, y_train, f_train=f_train)

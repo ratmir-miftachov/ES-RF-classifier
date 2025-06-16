@@ -5,11 +5,12 @@ import numpy as np
 
 class mseRF(object):
     def __init__(
-        self, n_estimators=100, random_state=None, vote_probability=True, es_offset=0
+        self, n_estimators=100, random_state=None, vote_probability=True, es_offset=0, max_features="sqrt"
     ):
         self.n_estimators = n_estimators
         self.random_state = random_state
         self.vote_probability = vote_probability
+        self.max_features = max_features
         if es_offset is None:
             self.es_offset = 0
         else:
@@ -46,6 +47,7 @@ class mseRF(object):
             rf = RandomForestClassifier(
                 n_estimators=self.n_estimators,
                 max_depth=iteration,
+                max_features=self.max_features,
                 random_state=self.random_state,
             )
             rf.fit(X_train, y_train)
