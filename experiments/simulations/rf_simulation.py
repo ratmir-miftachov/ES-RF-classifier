@@ -10,10 +10,14 @@ from sklearn.metrics import matthews_corrcoef
 import time
 
 # Local imports
-import noise_level_estimator as noise_est
-from EsGlobalRF import RandomForestClassifier as EsGlobalRF
-from model_builder import build_rf_clf
-import data_generation
+import sys
+import os
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..'))
+
+from src.utils import noise_level_estimator as noise_est
+from src.algorithms.EsGlobalRF import RandomForestClassifier as EsGlobalRF
+from src.utils.model_builder import build_rf_clf
+from src.utils import data_generation
 
 n_iterations = 110
 
@@ -158,7 +162,7 @@ def run_single_iteration(seed, dgp_config):
             es_offset=config.get("es_offset"),
             rf_train_mse=config.get("rf_train_mse"),
             kappa=config.get("kappa"),
-            n_estimators=30,  # Match empirical study
+            n_estimators=1,  # Match empirical study
             vote_probability=config.get("vote_probability"),
             estimate_noise_before_sampling=config.get("estimate_noise_before_sampling"),
             random_state=seed,

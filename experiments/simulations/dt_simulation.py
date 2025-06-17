@@ -9,10 +9,14 @@ from sklearn.metrics import matthews_corrcoef #, f1_score, log_loss
 import time
 
 # Local imports
-import noise_level_estimator as noise_est
-from clean_dt import DecisionTreeLevelWise
-from model_builder import build_post_pruned_dt_clf
-import data_generation
+import sys
+import os
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..'))
+
+from src.utils import noise_level_estimator as noise_est
+from src.algorithms.clean_dt import DecisionTreeLevelWise
+from src.utils.model_builder import build_post_pruned_dt_clf
+from src.utils import data_generation
 
 n_iterations = 55
 

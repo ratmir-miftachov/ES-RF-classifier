@@ -8,9 +8,10 @@ from sklearn.metrics import accuracy_score, matthews_corrcoef, f1_score, log_los
 from joblib import Parallel, delayed
 import os
 import sys
+import os
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..'))
 
-
-from model_builder import build_rf_clf
+from src.utils.model_builder import build_rf_clf
 
 # Random seed for reproducibility
 RANDOM_SEED = 7

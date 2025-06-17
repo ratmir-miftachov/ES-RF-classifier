@@ -10,14 +10,14 @@ from sklearn.ensemble import RandomForestClassifier as scikit_rf
 # sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 # Replace infrastructure imports with direct imports:
-from mseRF import mseRF
-from clean_dt import DecisionTreeLevelWise as custom_tree
+from ..algorithms.mseRF import mseRF
+from ..algorithms.clean_dt import DecisionTreeLevelWise as custom_tree
 
-import noise_level_estimator as noise_est
+from . import noise_level_estimator as noise_est
 import numpy as np
 
-from ScikitRFTwoStep import RandomForestClassifier2Step
-import EsGlobalRF as ESGlobalRF
+from ..algorithms.ScikitRFTwoStep import RandomForestClassifier2Step
+from ..algorithms import EsGlobalRF as ESGlobalRF
 
 def build_post_pruned_dt_clf(
     X_train, y_train, random_state, max_depth=None, n_cv_alpha=5, full_alpha_range=False, max_features=None

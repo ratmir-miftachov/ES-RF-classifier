@@ -11,9 +11,13 @@ from sklearn.metrics import matthews_corrcoef, f1_score, log_loss
 import time
 
 # Instead of the infrastructure imports, use:
-import noise_level_estimator as noise_est
-from clean_dt import DecisionTreeLevelWise
-from model_builder import build_post_pruned_dt_clf
+import sys
+import os
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..'))
+
+from src.utils import noise_level_estimator as noise_est
+from src.algorithms.clean_dt import DecisionTreeLevelWise
+from src.utils.model_builder import build_post_pruned_dt_clf
 
 n_iterations = 300
 

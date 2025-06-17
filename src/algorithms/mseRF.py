@@ -1,5 +1,5 @@
 from sklearn.ensemble import RandomForestClassifier
-import noise_level_estimator as noise_est
+from ..utils import noise_level_estimator as noise_est
 import numpy as np
 
 

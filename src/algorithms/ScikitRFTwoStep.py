@@ -6,8 +6,8 @@ from sklearn.metrics import accuracy_score, precision_score, recall_score
 from sklearn.model_selection import GridSearchCV
 from tqdm import tqdm
 
-import noise_level_estimator as noise_est
-from clean_dt import DecisionTreeLevelWise as custom_tree
+from ..utils import noise_level_estimator as noise_est
+from .clean_dt import DecisionTreeLevelWise as custom_tree
 
 class RandomForestClassifier2Step(object):
     # initializer
