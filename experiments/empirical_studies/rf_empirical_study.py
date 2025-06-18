@@ -16,7 +16,7 @@ from src.utils.model_builder import build_rf_clf
 # Random seed for reproducibility
 RANDOM_SEED = 7
 N_ESTIMATORS = 50
-N_ITERATIONS = 200  # Number of Monte Carlo iterations
+N_ITERATIONS = 400  # Number of Monte Carlo iterations
 N_JOBS = -1  # für alle Kerne -1
 
 # Define dataset names instead of IDs
@@ -75,25 +75,29 @@ def load_dataset(dataset_name):
 
 # Define algorithm configurations
 ALGORITHM_CONFIGS = [
+    # UGES variants
     {
         "algorithm": "UGES",
         "vote_probability": False,
         "algorithm_name": "UGES",
         "es_offset": 0,
+        "max_features": "sqrt",
     },
-    # {
-    #     "algorithm_name": "ICCP",
-    #     "algorithm": "CCP",
-    #     "kappa": "no_es",
-    #     "max_features": "sqrt",
-    # },
-    # {
-    #     "algorithm": "UES",
-    #     "kappa": "1nn",
-    #     "max_features": "sqrt",
-    #     "estimate_noise_before_sampling": True,
-    #     "es_offset": 0,
-    # },
+    {
+        "algorithm": "UGES",
+        "vote_probability": False,
+        "algorithm_name": "UGES_d",
+        "es_offset": 0,
+        "max_features": None,  # mtry=d (all features)
+    },
+    {
+        "algorithm": "UGES",
+        "vote_probability": False,
+        "algorithm_name": "UGES_1",
+        "es_offset": 0,
+        "max_features": 1,  # mtry=1 (single feature)
+    },
+    # IGES variants
     {
         "algorithm_name": "IGES",
         "algorithm": "IES",
@@ -104,14 +108,24 @@ ALGORITHM_CONFIGS = [
         "rf_train_mse": True,
     },
     {
-        "algorithm_name": "IGES_factor",
+        "algorithm_name": "IGES_d",
         "algorithm": "IES",
         "kappa": "1nn",
-        "max_features": "sqrt_factor",  # This will be calculated dynamically
+        "max_features": None,  # mtry=d (all features)
         "estimate_noise_before_sampling": True,
         "es_offset": 0,
         "rf_train_mse": True,
     },
+    {
+        "algorithm_name": "IGES_1",
+        "algorithm": "IES",
+        "kappa": "1nn",
+        "max_features": 1,  # mtry=1 (single feature)
+        "estimate_noise_before_sampling": True,
+        "es_offset": 0,
+        "rf_train_mse": True,
+    },
+    # ILES variants
     {
         "algorithm_name": "ILES",
         "algorithm": "IES",
@@ -121,35 +135,37 @@ ALGORITHM_CONFIGS = [
         "es_offset": 0,
     },
     {
-        "algorithm_name": "ILES_factor",
-        "algorithm": "IES", 
+        "algorithm_name": "ILES_d",
+        "algorithm": "IES",
         "kappa": "1nn",
-        "max_features": "sqrt_factor",  # This will be calculated dynamically
+        "max_features": None,  # mtry=d (all features)
         "estimate_noise_before_sampling": True,
         "es_offset": 0,
     },
     {
+        "algorithm_name": "ILES_1",
+        "algorithm": "IES", 
+        "kappa": "1nn",
+        "max_features": 1,  # mtry=1 (single feature)
+        "estimate_noise_before_sampling": True,
+        "es_offset": 0,
+    },
+    # MD_scikit variants
+    {
         "algorithm": "MD_scikit",
+        "algorithm_name": "MD_scikit",
         "max_features": "sqrt",
     },
     {
-        "algorithm": "MD_scikit_factor",
-        "max_features": "sqrt_factor",  # This will be calculated dynamically
+        "algorithm": "MD_scikit",
+        "algorithm_name": "MD_scikit_d",
+        "max_features": None,  # mtry=d (all features)
     },
-    # {
-    #     "algorithm": "MD_custom",
-    #     "kappa": "no_es",
-    #     "max_features": "sqrt",
-    #     "estimate_noise_before_sampling": True,
-    #     "es_offset": 0,
-    # },
-    # {
-    #     "algorithm": "MD_custom_factor",
-    #     "kappa": "no_es",
-    #     "max_features": "sqrt_factor",  # This will be calculated dynamically
-    #     "estimate_noise_before_sampling": True,
-    #     "es_offset": 0,
-    # },
+    {
+        "algorithm": "MD_scikit",
+        "algorithm_name": "MD_scikit_1",
+        "max_features": 1,  # mtry=1 (single feature)
+    },
 ]
 
 

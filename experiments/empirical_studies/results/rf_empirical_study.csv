@@ -1,0 +1,73 @@
+dataset,algorithm_name,test_acc (mean),mcc_test (mean),mean_depth (mean),mean_n_leaves (mean)
+Banknote,UGES,0.99,0.97,5.7,19.9
+Banknote,UGES_d,0.98,0.97,5.0,17.1
+Banknote,UGES_1,0.99,0.97,7.7,32.7
+Banknote,IGES,0.99,0.98,8.3,26.5
+Banknote,IGES_d,0.99,0.98,7.1,21.9
+Banknote,IGES_1,0.99,0.97,11.2,43.4
+Banknote,ILES,0.99,0.98,8.3,26.5
+Banknote,ILES_d,0.99,0.98,7.1,21.9
+Banknote,ILES_1,0.99,0.97,11.2,43.4
+Banknote,MD_scikit,0.99,0.98,8.3,26.5
+Banknote,MD_scikit_d,0.99,0.98,7.1,21.9
+Banknote,MD_scikit_1,0.99,0.98,11.2,43.8
+Pima Indians,UGES,0.74,0.4,2.9,7.4
+Pima Indians,UGES_d,0.75,0.42,2.1,4.5
+Pima Indians,UGES_1,0.72,0.35,3.7,12.7
+Pima Indians,IGES,0.74,0.4,5.4,32.5
+Pima Indians,IGES_d,0.75,0.43,3.6,12.8
+Pima Indians,IGES_1,0.72,0.34,7.7,63.9
+Pima Indians,ILES,0.73,0.38,3.5,11.6
+Pima Indians,ILES_d,0.74,0.39,2.4,5.5
+Pima Indians,ILES_1,0.71,0.31,4.4,18.8
+Pima Indians,MD_scikit,0.74,0.42,15.1,118.5
+Pima Indians,MD_scikit_d,0.74,0.4,13.4,84.6
+Pima Indians,MD_scikit_1,0.73,0.37,16.5,150.5
+Haberman,UGES,0.74,0.14,3.3,9.4
+Haberman,UGES_d,0.75,0.2,2.6,6.2
+Haberman,UGES_1,0.74,0.14,3.3,9.4
+Haberman,IGES,0.74,0.19,7.8,33.4
+Haberman,IGES_d,0.73,0.18,6.3,27.6
+Haberman,IGES_1,0.74,0.19,7.8,33.4
+Haberman,ILES,0.74,0.14,3.2,8.8
+Haberman,ILES_d,0.75,0.22,2.3,5.6
+Haberman,ILES_1,0.74,0.14,3.2,8.8
+Haberman,MD_scikit,0.7,0.12,13.3,70.9
+Haberman,MD_scikit_d,0.69,0.11,12.6,57.7
+Haberman,MD_scikit_1,0.7,0.12,13.3,70.9
+Ozone,UGES,0.94,0.12,3.9,13.3
+Ozone,UGES_d,0.94,0.1,3.2,8.8
+Ozone,UGES_1,0.94,0.03,5.7,32.1
+Ozone,IGES,0.94,0.26,7.1,47.4
+Ozone,IGES_d,0.94,0.31,6.4,33.1
+Ozone,IGES_1,0.94,0.17,10.8,106.0
+Ozone,ILES,0.94,0.11,4.0,14.8
+Ozone,ILES_d,0.94,0.14,3.3,9.9
+Ozone,ILES_1,0.94,0.06,5.9,34.7
+Ozone,MD_scikit,0.94,0.37,14.5,91.3
+Ozone,MD_scikit_d,0.94,0.34,14.4,70.3
+Ozone,MD_scikit_1,0.94,0.27,18.3,160.7
+Spam,UGES,0.91,0.81,3.9,14.0
+Spam,UGES_d,0.91,0.8,3.0,8.0
+Spam,UGES_1,0.9,0.79,9.3,86.3
+Spam,IGES,0.9,0.79,6.6,51.9
+Spam,IGES_d,0.91,0.82,4.0,14.2
+Spam,IGES_1,0.85,0.7,19.9,103.3
+Spam,ILES,0.89,0.77,5.9,38.5
+Spam,ILES_d,0.91,0.81,3.6,11.8
+Spam,ILES_1,0.83,0.65,9.8,60.4
+Spam,MD_scikit,0.95,0.89,32.6,323.6
+Spam,MD_scikit_d,0.94,0.88,29.3,191.4
+Spam,MD_scikit_1,0.94,0.88,50.2,559.8
+Wisc. Breast Cancer,UGES,0.97,0.93,3.4,9.4
+Wisc. Breast Cancer,UGES_d,0.96,0.92,3.2,8.2
+Wisc. Breast Cancer,UGES_1,0.97,0.93,4.1,13.8
+Wisc. Breast Cancer,IGES,0.96,0.91,6.8,22.1
+Wisc. Breast Cancer,IGES_d,0.96,0.92,6.0,17.0
+Wisc. Breast Cancer,IGES_1,0.95,0.9,8.3,27.6
+Wisc. Breast Cancer,ILES,0.96,0.92,3.9,11.8
+Wisc. Breast Cancer,ILES_d,0.96,0.92,3.3,8.8
+Wisc. Breast Cancer,ILES_1,0.95,0.9,4.8,17.1
+Wisc. Breast Cancer,MD_scikit,0.96,0.92,8.7,26.2
+Wisc. Breast Cancer,MD_scikit_d,0.96,0.92,7.6,20.3
+Wisc. Breast Cancer,MD_scikit_1,0.97,0.93,10.2,38.1
