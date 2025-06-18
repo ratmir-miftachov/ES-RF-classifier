@@ -19,7 +19,7 @@ from src.algorithms.EsGlobalRF import RandomForestClassifier as EsGlobalRF
 from src.utils.model_builder import build_rf_clf
 from src.utils import data_generation
 
-n_iterations = 110
+n_iterations = 250
 
 print(f"Using {cpu_count()} CPU cores for parallel processing")
 
@@ -162,7 +162,7 @@ def run_single_iteration(seed, dgp_config):
             es_offset=config.get("es_offset"),
             rf_train_mse=config.get("rf_train_mse"),
             kappa=config.get("kappa"),
-            n_estimators=1,  # Match empirical study
+            n_estimators=50,  # number of trees in the forest
             vote_probability=config.get("vote_probability"),
             estimate_noise_before_sampling=config.get("estimate_noise_before_sampling"),
             random_state=seed,
@@ -248,25 +248,25 @@ dgp_configs = [
     {
         "dgp_name": "circular",
         "n_samples": 2000,
-        "feature_dim": 2,
+        "feature_dim": 10,
         "bernoulli_p": 0.8,
     },
     {
         "dgp_name": "smooth_signal",  # Circular Smooth
         "n_samples": 2000,
-        "feature_dim": 2,
+        "feature_dim": 10,
         "bernoulli_p": 0.8,  # Not used for smooth_signal
     },
     {
         "dgp_name": "rectangular",
         "n_samples": 2000,
-        "feature_dim": 2,
+        "feature_dim": 10,
         "bernoulli_p": 0.8,
     },
     {
         "dgp_name": "sine_cosine",
         "n_samples": 2000,
-        "feature_dim": 2,
+        "feature_dim": 10,
         "bernoulli_p": 0.8,  # Not used for sine_cosine
     },
 ]
