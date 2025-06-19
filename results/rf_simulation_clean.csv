@@ -1,0 +1,97 @@
+dataset,method,test_acc_median,test_mcc_median,depth_median,n_leaves_median,fit_time_median
+Add. H.I. Jump,IGES,0.78,0.57,14.9,126.9,39.026
+Add. H.I. Jump,IGES_1,0.67,0.33,20.4,235.7,13.636
+Add. H.I. Jump,IGES_d,0.81,0.63,9.3,58.4,190.625
+Add. H.I. Jump,ILES,0.77,0.54,6.7,50.6,29.617
+Add. H.I. Jump,ILES_1,0.66,0.31,9.8,115.0,7.575
+Add. H.I. Jump,ILES_d,0.82,0.64,3.9,14.9,138.342
+Add. H.I. Jump,MD_scikit,0.8,0.6,15.1,126.7,0.218
+Add. H.I. Jump,MD_scikit_1,0.7,0.39,20.3,233.1,0.103
+Add. H.I. Jump,MD_scikit_d,0.81,0.62,14.9,78.9,0.946
+Add. H.I. Jump,UGES,0.8,0.61,6.0,40.0,0.761
+Add. H.I. Jump,UGES_1,0.7,0.4,9.0,103.3,0.746
+Add. H.I. Jump,UGES_d,0.82,0.64,4.0,15.0,1.342
+Add. Het.,IGES,0.81,0.62,15.2,120.8,39.78
+Add. Het.,IGES_1,0.7,0.39,21.2,234.9,14.389
+Add. Het.,IGES_d,0.84,0.67,11.5,67.3,198.544
+Add. Het.,ILES,0.8,0.59,7.6,61.2,31.55
+Add. Het.,ILES_1,0.69,0.38,11.7,141.5,8.36
+Add. Het.,ILES_d,0.83,0.67,4.7,21.9,149.449
+Add. Het.,MD_scikit,0.82,0.65,15.1,120.3,0.221
+Add. Het.,MD_scikit_1,0.74,0.48,21.2,230.9,0.105
+Add. Het.,MD_scikit_d,0.84,0.67,12.5,69.9,0.868
+Add. Het.,UGES,0.82,0.64,7.0,52.0,0.944
+Add. Het.,UGES_1,0.74,0.49,11.0,132.4,0.946
+Add. Het.,UGES_d,0.84,0.67,5.0,25.1,1.916
+Add. Jump,IGES,0.88,0.75,12.8,89.7,34.845
+Add. Jump,IGES_1,0.78,0.53,17.9,199.8,11.762
+Add. Jump,IGES_d,0.89,0.77,5.7,23.2,159.43
+Add. Jump,ILES,0.87,0.73,6.4,45.9,28.176
+Add. Jump,ILES_1,0.76,0.49,9.8,126.8,7.335
+Add. Jump,ILES_d,0.89,0.77,2.7,6.4,118.371
+Add. Jump,MD_scikit,0.89,0.77,13.1,87.8,0.195
+Add. Jump,MD_scikit_1,0.8,0.59,17.8,193.0,0.097
+Add. Jump,MD_scikit_d,0.89,0.76,11.2,46.4,0.813
+Add. Jump,UGES,0.88,0.76,6.0,37.1,0.722
+Add. Jump,UGES_1,0.8,0.58,9.0,109.1,0.741
+Add. Jump,UGES_d,0.89,0.77,3.0,7.5,0.857
+Add. Smooth,IGES,0.7,0.41,11.4,109.5,38.159
+Add. Smooth,IGES_1,0.64,0.29,20.9,238.8,14.571
+Add. Smooth,IGES_d,0.72,0.45,5.8,36.1,165.483
+Add. Smooth,ILES,0.69,0.39,5.6,30.5,27.584
+Add. Smooth,ILES_1,0.64,0.28,8.6,72.3,7.237
+Add. Smooth,ILES_d,0.72,0.44,3.0,8.2,124.149
+Add. Smooth,MD_scikit,0.71,0.42,16.0,136.3,0.226
+Add. Smooth,MD_scikit_1,0.66,0.33,21.6,240.1,0.107
+Add. Smooth,MD_scikit_d,0.72,0.43,14.0,92.8,0.926
+Add. Smooth,UGES,0.71,0.42,5.0,23.6,0.593
+Add. Smooth,UGES_1,0.67,0.34,8.0,64.7,0.64
+Add. Smooth,UGES_d,0.72,0.45,3.0,8.0,0.855
+Circular,IGES,0.76,0.41,9.7,96.2,22.791
+Circular,IGES_1,0.71,0.21,15.8,185.5,12.005
+Circular,IGES_d,0.77,0.44,6.5,44.9,58.955
+Circular,ILES,0.74,0.36,5.3,26.4,16.194
+Circular,ILES_1,0.68,0.05,7.1,46.0,6.402
+Circular,ILES_d,0.77,0.45,4.0,14.0,46.778
+Circular,MD_scikit,0.75,0.38,16.9,154.4,0.166
+Circular,MD_scikit_1,0.71,0.23,21.2,220.9,0.104
+Circular,MD_scikit_d,0.76,0.4,15.5,121.0,0.378
+Circular,UGES,0.73,0.31,5.0,22.6,0.483
+Circular,UGES_1,0.69,0.07,7.0,45.3,0.541
+Circular,UGES_d,0.78,0.44,4.0,13.9,0.62
+Circular Smooth,IGES,0.78,0.45,10.3,89.4,22.576
+Circular Smooth,IGES_1,0.74,0.27,17.2,181.2,12.52
+Circular Smooth,IGES_d,0.78,0.47,6.8,42.5,59.213
+Circular Smooth,ILES,0.77,0.41,5.7,28.6,16.653
+Circular Smooth,ILES_1,0.71,0.08,7.7,52.1,6.656
+Circular Smooth,ILES_d,0.78,0.47,4.0,13.7,47.248
+Circular Smooth,MD_scikit,0.78,0.43,17.2,138.1,0.162
+Circular Smooth,MD_scikit_1,0.74,0.28,21.5,204.0,0.103
+Circular Smooth,MD_scikit_d,0.78,0.44,15.0,106.7,0.358
+Circular Smooth,UGES,0.75,0.32,5.0,21.6,0.483
+Circular Smooth,UGES_1,0.7,0.08,7.0,44.9,0.546
+Circular Smooth,UGES_d,0.79,0.48,4.0,13.4,0.622
+Rectangular,IGES,0.77,0.29,9.3,82.2,22.339
+Rectangular,IGES_1,0.74,0.07,12.9,143.2,10.865
+Rectangular,IGES_d,0.79,0.39,5.9,34.1,56.339
+Rectangular,ILES,0.74,0.04,4.8,19.4,15.459
+Rectangular,ILES_1,0.73,0.0,6.0,31.4,5.835
+Rectangular,ILES_d,0.78,0.38,3.8,12.6,45.886
+Rectangular,MD_scikit,0.76,0.28,17.4,150.8,0.169
+Rectangular,MD_scikit_1,0.74,0.11,21.1,210.3,0.105
+Rectangular,MD_scikit_d,0.77,0.34,15.9,119.2,0.387
+Rectangular,UGES,0.74,0.05,5.0,20.1,0.467
+Rectangular,UGES_1,0.73,0.0,6.0,30.6,0.453
+Rectangular,UGES_d,0.78,0.36,4.0,13.3,0.62
+Sine Cosine,IGES,0.53,0.06,9.9,91.2,23.764
+Sine Cosine,IGES_1,0.52,0.03,11.6,128.1,10.515
+Sine Cosine,IGES_d,0.54,0.09,8.8,70.8,69.249
+Sine Cosine,ILES,0.51,0.02,4.5,16.1,15.147
+Sine Cosine,ILES_1,0.51,0.01,5.4,23.0,5.583
+Sine Cosine,ILES_d,0.52,0.03,4.0,13.2,47.584
+Sine Cosine,MD_scikit,0.53,0.06,20.2,189.4,0.182
+Sine Cosine,MD_scikit_1,0.52,0.05,23.5,258.1,0.11
+Sine Cosine,MD_scikit_d,0.54,0.08,18.4,152.0,0.418
+Sine Cosine,UGES,0.51,0.03,4.0,13.7,0.366
+Sine Cosine,UGES_1,0.51,0.02,5.0,20.7,0.367
+Sine Cosine,UGES_d,0.52,0.05,4.0,13.5,0.621
