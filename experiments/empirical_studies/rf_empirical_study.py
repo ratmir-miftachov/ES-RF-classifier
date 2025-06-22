@@ -15,8 +15,8 @@ from src.utils.model_builder import build_rf_clf
 
 # Random seed for reproducibility
 RANDOM_SEED = 7
-N_ESTIMATORS = 2
-N_ITERATIONS = 11  # Number of Monte Carlo iterations
+N_ESTIMATORS = 50
+N_ITERATIONS = 300  # Number of Monte Carlo iterations
 N_JOBS = -1  # für alle Kerne -1
 
 # Define dataset names instead of IDs
