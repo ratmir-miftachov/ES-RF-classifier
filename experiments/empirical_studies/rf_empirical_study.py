@@ -15,8 +15,8 @@ from src.utils.model_builder import build_rf_clf
 
 # Random seed for reproducibility
 RANDOM_SEED = 7
-N_ESTIMATORS = 50
-N_ITERATIONS = 400  # Number of Monte Carlo iterations
+N_ESTIMATORS = 2
+N_ITERATIONS = 11  # Number of Monte Carlo iterations
 N_JOBS = -1  # für alle Kerne -1
 
 # Define dataset names instead of IDs
@@ -394,7 +394,7 @@ def main():
                     values = dataset_algo_df[metric].dropna()
                     if not values.empty:
                         aggregate_result[f"{metric} (mean)"] = values.mean()
-                        #aggregate_result[f"{metric} (median)"] = values.median()
+                        aggregate_result[f"{metric} (median)"] = values.median()
 
             agg_results.append(aggregate_result)
 
@@ -402,25 +402,25 @@ def main():
     df_agg_results = pd.DataFrame(agg_results)
 
     # Round different columns to different decimal places
-    # Round depth and n_leaves columns to 1 decimal place
+    # Round depth and n_leaves columns to 1 decimal place (both mean and median)
     depth_cols = [col for col in df_agg_results.columns if "depth" in col]
     leaves_cols = [col for col in df_agg_results.columns if "leaves" in col]
     if depth_cols or leaves_cols:
         df_agg_results[depth_cols + leaves_cols] = df_agg_results[depth_cols + leaves_cols].round(1)
 
-    # Round fit_time/duration columns to 3 decimal places
+    # Round fit_time/duration columns to 3 decimal places (both mean and median)
     time_cols = [col for col in df_agg_results.columns if "duration" in col or "fit_time" in col]
     if time_cols:
         df_agg_results[time_cols] = df_agg_results[time_cols].round(3)
 
-    # Round all other numeric columns to 2 decimal places
+    # Round all other numeric columns to 2 decimal places (both mean and median)
     numeric_cols = df_agg_results.select_dtypes(include=[np.number]).columns
     other_cols = [col for col in numeric_cols if col not in depth_cols + leaves_cols + time_cols]
     if other_cols:
         df_agg_results[other_cols] = df_agg_results[other_cols].round(2)
 
     # Save aggregated results
-    output_path = os.path.join(output_dir, "rf_empirical_study.csv")
+    output_path = os.path.join(output_dir, "rf_empirical_study_median.csv")
     df_agg_results.to_csv(output_path, index=False)
     print(f"Aggregated results saved to {output_path}")
 

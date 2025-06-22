@@ -19,7 +19,7 @@ from src.utils import noise_level_estimator as noise_est
 from src.algorithms.clean_dt import DecisionTreeLevelWise
 from src.utils.model_builder import build_post_pruned_dt_clf
 
-n_iterations = 300
+n_iterations = 33
 
 print(f"Using {cpu_count()} CPU cores for parallel processing")
 
@@ -229,8 +229,8 @@ def load_dataset(dataset_name):
         y = (y.astype(int) == 2).astype(int).to_numpy()
     elif dataset_name == "Ozone":
         data = fetch_openml(data_id=1487, as_frame=True)
-        X = data.data.to_numpy()
-        y = (data.target == "1").astype(int).to_numpy()
+        X = data['data'].to_numpy()
+        y = (data['target'] == "1").astype(int).to_numpy()
     elif dataset_name == "SA Heart":
         dataset = datasets.get_dataset(1498)
         X, y, _, _ = dataset.get_data(target=dataset.default_target_attribute)
@@ -317,74 +317,56 @@ for dataset_name in dataset_names:
 # Convert all results to DataFrame
 df_results = pd.DataFrame(all_datasets_results)
 
-# Calculate mean results grouped by dataset and method
-mean_results = (
+# Calculate mean and median results grouped by dataset and method
+summary_results = (
     df_results.groupby(["dataset", "method"])
     .agg(
         {
-            #"train_acc": "mean",
-            "test_acc": "mean",
-            "test_mcc": "mean",
-            #"test_f1": "mean",
-            #"test_log_loss": "mean",
-            "depth": "mean",
-            "n_leaves": "mean",
-            #"noise_estimate": "mean",
-            "fit_time": "mean",
+            #"train_acc": ["mean", "median"],
+            "test_acc": ["mean", "median"],
+            "test_mcc": ["mean", "median"],
+            #"test_f1": ["mean", "median"],
+            #"test_log_loss": ["mean", "median"],
+            "depth": ["mean", "median"],
+            "n_leaves": ["mean", "median"],
+            #"noise_estimate": ["mean", "median"],
+            "fit_time": ["mean", "median"],
         }
     )
-    .rename(
-        columns={
-            #"train_acc": "train_acc_mean",
-            "test_acc": "test_acc_mean",
-            "test_mcc": "test_mcc_mean",
-            #"test_f1": "test_f1_mean",
-            #"test_log_loss": "test_log_loss_mean",
-            "depth": "depth_mean",
-            "n_leaves": "n_leaves_mean",
-            #"noise_estimate": "noise_estimate_mean",
-            "fit_time": "fit_time_mean",
-        }
-    )
-    .reset_index()  # Reset the index to convert multi-level to columns
 )
+
+# Flatten the multi-level column names
+summary_results.columns = ['_'.join(col).strip() for col in summary_results.columns.values]
+summary_results = summary_results.reset_index()  # Reset the index to convert multi-level to columns
 
 # Convert dataset characteristics to DataFrame
 df_characteristics = pd.DataFrame(dataset_characteristics)
 
-# Merge characteristics with mean_results
-mean_results = mean_results.merge(df_characteristics, on="dataset", how="left")
+# Merge characteristics with summary_results
+summary_results = summary_results.merge(df_characteristics, on="dataset", how="left")
 
 # Round different columns to different decimal places
 # Round depth and n_leaves columns to 1 decimal place
-mean_results[["depth_mean", "n_leaves_mean"]] = mean_results[
-    ["depth_mean", "n_leaves_mean"]
-].round(1)
+depth_leaves_cols = [col for col in summary_results.columns if 'depth_' in col or 'n_leaves_' in col]
+summary_results[depth_leaves_cols] = summary_results[depth_leaves_cols].round(1)
 
-mean_results["fit_time_mean"] = mean_results["fit_time_mean"].round(3)
+# Round fit_time columns to 3 decimal places
+fit_time_cols = [col for col in summary_results.columns if 'fit_time_' in col]
+summary_results[fit_time_cols] = summary_results[fit_time_cols].round(3)
 
-# Round all other columns (i.e. unequal depth_mean and n_leaves_mean) to 2 decimal places
-mean_results[
-    [
-        col
-        for col in mean_results.columns
-        if col not in ["depth_mean", "n_leaves_mean", "fit_time_mean"]
-    ]
-] = mean_results[
-    [
-        col
-        for col in mean_results.columns
-        if col not in ["depth_mean", "n_leaves_mean", "fit_time_mean"]
-    ]
-].round(
-    2
-)
+# Round all other metric columns to 2 decimal places
+other_cols = [
+    col
+    for col in summary_results.columns
+    if col not in depth_leaves_cols + fit_time_cols + ["dataset", "method"]
+]
+summary_results[other_cols] = summary_results[other_cols].round(2)
 
 
 # Save results
 output_dir = "results"
 os.makedirs(output_dir, exist_ok=True)
-mean_results.to_csv(
-    os.path.join(output_dir, "dt_empirical_study.csv"),
+summary_results.to_csv(
+    os.path.join(output_dir, "dt_empirical_study_median.csv"),
     index=False,
 )
