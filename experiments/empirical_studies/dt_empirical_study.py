@@ -19,13 +19,12 @@ from src.utils import noise_level_estimator as noise_est
 from src.algorithms.clean_dt import DecisionTreeLevelWise
 from src.utils.model_builder import build_post_pruned_dt_clf
 
-n_iterations = 33
+n_iterations = 500
 
 print(f"Using {cpu_count()} CPU cores for parallel processing")
 
 
 def run_single_iteration(seed):
-    # Set random seed for this iteration
     # Set random seed for this iteration
     np.random.seed(seed)
 
