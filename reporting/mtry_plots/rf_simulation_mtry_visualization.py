@@ -17,7 +17,7 @@ plt.rcParams.update({
 })
 
 # Read the data
-df = pd.read_csv('results/rf_simulation_clean.csv')
+df = pd.read_csv('reporting/results/saved/csvs/rf_simulation_B50.csv')
 
 # Filter for IGES and MD_scikit methods only
 methods_of_interest = ['IGES', 'IGES_1', 'IGES_d', 'MD_scikit', 'MD_scikit_1', 'MD_scikit_d']

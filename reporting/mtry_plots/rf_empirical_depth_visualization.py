@@ -34,9 +34,9 @@ dataset_order = [
     "Banknote", "Pima Indians", "Haberman", "Ozone", "Spam", "Wisc. Breast Cancer"
 ]
 
-# Create the visualization with only MCC plots in 2x3 layout
+# Create the visualization with depth plots in 2x3 layout
 fig, axes = plt.subplots(2, 3, figsize=(12, 8))
-fig.suptitle('ES random forest (IGES) vs deep random forest Performance on Empirical Datasets', fontsize=14, y=0.98)
+fig.suptitle('Tree Depth (Median): ES Random Forest (IGES) vs Deep Random Forest on Empirical Datasets', fontsize=14, y=0.98)
 
 # Minimalistic color scheme
 uges_color = '#2E86AB'  # Blue
@@ -45,7 +45,7 @@ md_color = '#A23B72'    # Purple
 # Flatten axes for easier iteration
 axes_flat = axes.flatten()
 
-# Create MCC plots only
+# Create depth plots only
 for dataset_idx, dataset in enumerate(dataset_order):
     ax = axes_flat[dataset_idx]
     
@@ -71,19 +71,19 @@ for dataset_idx, dataset in enumerate(dataset_order):
         deep_row = dataset_data[(dataset_data['base_method'] == 'deep random forest') & 
                                (dataset_data['mtry_setting'] == mtry)]
         
-        es_score = es_row['mcc_test (median)'].iloc[0] if not es_row.empty else 0
-        deep_score = deep_row['mcc_test (median)'].iloc[0] if not deep_row.empty else 0
+        es_score = es_row['mean_depth (median)'].iloc[0] if not es_row.empty else 0
+        deep_score = deep_row['mean_depth (median)'].iloc[0] if not deep_row.empty else 0
         
         es_data.append(es_score)
         deep_data.append(deep_score)
     
-    # Create clean bars without patterns (deep random tree on left, ES random tree on right)
+    # Create clean bars without patterns (deep random forest on left, ES random forest on right)
     bars1 = ax.bar(x_positions - width/2, deep_data, width,
-                   label='deep random tree', color=md_color, alpha=0.8,
+                   label='deep random forest', color=md_color, alpha=0.8,
                    edgecolor='white', linewidth=1)
     
     bars2 = ax.bar(x_positions + width/2, es_data, width, 
-                   label='ES random tree', color=uges_color, alpha=0.8, 
+                   label='ES random forest', color=uges_color, alpha=0.8, 
                    edgecolor='white', linewidth=1)
     
     # Customize subplot with minimal styling
@@ -96,8 +96,11 @@ for dataset_idx, dataset in enumerate(dataset_order):
     ax.grid(True, alpha=0.3, axis='y', linestyle='-', linewidth=0.5)
     ax.set_axisbelow(True)
     
-    # Set fixed y-axis limits
-    ax.set_ylim(0, 1)
+    # Set y-axis limits: standard scale for most datasets, special scale for Spam
+    if dataset == "Spam":
+        ax.set_ylim(0, 50)  # Special scale for Spam with very deep trees
+    else:
+        ax.set_ylim(0, 20)  # Standard scale for all other datasets
     
     # Add xlabel to bottom row only
     if dataset_idx >= 3:  # Bottom row (indices 3, 4, 5)
@@ -107,7 +110,7 @@ for dataset_idx, dataset in enumerate(dataset_order):
     
     # Only add y-axis label to leftmost plots
     if dataset_idx % 3 == 0:  # Left column (indices 0, 3)
-        ax.set_ylabel('MCC', fontsize=9)
+        ax.set_ylabel('Depth', fontsize=9)
     else:
         ax.set_ylabel('')
 
@@ -125,16 +128,16 @@ plt.tight_layout()
 plt.subplots_adjust(top=0.88, hspace=0.3, wspace=0.15)
 
 # Save the plot
-plt.savefig('results/rf_empirical_comparison_plot_median.png', dpi=300, bbox_inches='tight')
+plt.savefig('results/rf_empirical_depth_comparison_plot.png', dpi=300, bbox_inches='tight')
 
 # Show the plot
 plt.show()
 
-print("Visualization saved as 'results/rf_empirical_comparison_plot_median.png'")
+print("Visualization saved as 'results/rf_empirical_depth_comparison_plot.png'")
 
 # Print summary statistics
 print("\n" + "="*80)
-print("EMPIRICAL DATASETS SUMMARY STATISTICS")
+print("EMPIRICAL DATASETS MEDIAN DEPTH SUMMARY STATISTICS (IGES)")
 print("="*80)
 
 for dataset in dataset_order:
@@ -145,7 +148,7 @@ for dataset in dataset_order:
     print(f"\n{dataset}:")
     print("-" * len(dataset))
     
-    for method in ['ES random tree', 'deep random tree']:
+    for method in ['ES random forest', 'deep random forest']:
         method_data = dataset_data[dataset_data['base_method'] == method]
         if method_data.empty:
             continue
@@ -158,4 +161,4 @@ for dataset in dataset_order:
                 acc = mtry_data['test_acc (median)'].iloc[0]
                 depth = mtry_data['mean_depth (median)'].iloc[0]
                 leaves = mtry_data['mean_n_leaves (median)'].iloc[0]
-                print(f"  mtry={mtry}: MCC={mcc:.3f}, Acc={acc:.3f}, Depth={depth:.1f}, Leaves={leaves:.1f}") 
+                print(f"  mtry={mtry}: Depth={depth:.1f}, Leaves={leaves:.1f}, MCC={mcc:.3f}, Acc={acc:.3f}") 
