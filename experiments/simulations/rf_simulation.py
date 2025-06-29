@@ -223,51 +223,51 @@ dgp_configs = [
     {
         "dgp_name": "hierarchical-interaction_sparse_jump",  # Add. H.I. Jump
         "n_samples": 2000,
-        "feature_dim": 30,
-        "bernoulli_p": 0.55,  # Not used for additive models
+        "feature_dim": 100,
+        "bernoulli_p": 0.8,  # Not used for additive models
     },
     {
         "dgp_name": "additive_model_I",  # Add. Het.
         "n_samples": 2000,
-        "feature_dim": 30,
-        "bernoulli_p": 0.55,  # Not used for additive models
+        "feature_dim": 100,
+        "bernoulli_p": 0.8,  # Not used for additive models
     },
     {
         "dgp_name": "additive_sparse_jump",  # Add. Jump
         "n_samples": 2000,
-        "feature_dim": 30,
-        "bernoulli_p": 0.55,  # Not used for additive models
+        "feature_dim": 100,
+        "bernoulli_p": 0.8,  # Not used for additive models
     },
     {
         "dgp_name": "additive_sparse_smooth",  # Add. Smooth
         "n_samples": 2000,
-        "feature_dim": 30,
-        "bernoulli_p": 0.55,  # Not used for additive models
+        "feature_dim": 100,
+        "bernoulli_p": 0.8,  # Not used for additive models
     },
     # 2D Cases (in specified order)
     {
         "dgp_name": "circular",
         "n_samples": 2000,
-        "feature_dim": 2,
-        "bernoulli_p": 0.55,
+        "feature_dim": 100,
+        "bernoulli_p": 0.8,
     },
     {
         "dgp_name": "smooth_signal",  # Circular Smooth
         "n_samples": 2000,
-        "feature_dim": 2,
-        "bernoulli_p": 0.55,  # Not used for smooth_signal
+        "feature_dim": 100,
+        "bernoulli_p": 0.8,  # Not used for smooth_signal
     },
     {
         "dgp_name": "rectangular",
         "n_samples": 2000,
-        "feature_dim": 2,
-        "bernoulli_p": 0.55,
+        "feature_dim": 100,
+        "bernoulli_p": 0.8,
     },
     {
         "dgp_name": "sine_cosine",
         "n_samples": 2000,
-        "feature_dim": 2,
-        "bernoulli_p": 0.55,  # Not used for sine_cosine
+        "feature_dim": 100,
+        "bernoulli_p": 0.8,  # Not used for sine_cosine
     },
 ]
 
@@ -333,7 +333,7 @@ median_results[numeric_cols] = median_results[numeric_cols].round(2)
 output_dir = "results"
 os.makedirs(output_dir, exist_ok=True)
 median_results.to_csv(
-    os.path.join(output_dir, "rf_simulation_clean_bernoulli_p_0.55.csv"),
+    os.path.join(output_dir, "rf_simulation_d100.csv"),
     index=False,
 )
 
