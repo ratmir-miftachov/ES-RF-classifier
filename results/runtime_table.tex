@@ -1,0 +1,36 @@
+\begin{table}[htbp]
+\centering
+\caption{Runtime Comparison of Decision Tree Methods (10 iterations)}
+\label{tab:runtime_comparison}
+\begin{tabular}{lcccc}
+\hline
+Dataset/DGP & CCP (s) & ES (s) & TS (s) & CCP/ES Ratio \\
+\hline
+\multicolumn{5}{l}{\textbf{Empirical Studies}} \\
+Banknote & 3.4 & 0.080 & 3.35 & 43× \\
+Haberman & 4.1 & 0.030 & 0.95 & 138× \\
+Ozone & 227.7 & 0.970 & 46.97 & 235× \\
+Pima Indians & 16.5 & 0.060 & 1.96 & 275× \\
+Spam & 520.0 & 1.290 & 28.58 & 403× \\
+Wisc. Breast Cancer & 1.8 & 0.060 & 1.36 & 30× \\
+\hline
+\multicolumn{5}{l}{\textbf{Simulation Studies}} \\
+Add. H.I. Jump & 59.3 & 0.130 & 15.96 & 456× \\
+Add. Het. & 51.4 & 0.150 & 22.34 & 342× \\
+Add. Jump & 30.2 & 0.090 & 5.49 & 336× \\
+Add. Smooth & 78.0 & 0.110 & 11.88 & 709× \\
+Circular & 14.1 & 0.010 & 1.68 & 1406× \\
+Circular Smooth & 12.2 & 0.010 & 1.83 & 1219× \\
+Rectangular & 13.3 & 0.010 & 1.48 & 1331× \\
+Sine Cosine & 22.7 & 0.020 & 2.18 & 1136× \\
+\hline
+\multicolumn{5}{l}{\textbf{Mean Runtime}} \\
+Empirical & 128.9 & 0.415 & 13.86 & 311× \\
+Simulation & 35.1 & 0.066 & 7.85 & 531× \\
+\hline
+\end{tabular}
+\begin{tablenotes}
+\item Runtime measured in seconds for 10 iterations.
+\item CCP: Cost Complexity Pruning, ES: Early Stopping, TS: Two-Step
+\end{tablenotes}
+\end{table}
