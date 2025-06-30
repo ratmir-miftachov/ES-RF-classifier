@@ -20,6 +20,7 @@ from src.utils.model_builder import build_rf_clf
 from src.utils import data_generation
 
 n_iterations = 300
+bernoulli_p_global = 0.65  # Global probability parameter used for all DGPs
 
 print(f"Using {cpu_count()} CPU cores for parallel processing")
 
@@ -53,9 +54,6 @@ def run_single_iteration(seed, dgp_config):
     
     # Dictionary to store results
     iteration_results = []
-    
-    # Calculate sqrt_factor for dynamic max_features
-    sqrt_factor = math.ceil(math.sqrt(X_train.shape[1]) * 2)
     
     # Algorithm configurations matching rf_empirical_study.py
     rf_configs = [
@@ -223,51 +221,51 @@ dgp_configs = [
     {
         "dgp_name": "hierarchical-interaction_sparse_jump",  # Add. H.I. Jump
         "n_samples": 2000,
-        "feature_dim": 100,
-        "bernoulli_p": 0.8,  # Not used for additive models
+        "feature_dim": 30,
+        "bernoulli_p": bernoulli_p_global,  # Not used for additive models
     },
     {
         "dgp_name": "additive_model_I",  # Add. Het.
         "n_samples": 2000,
-        "feature_dim": 100,
-        "bernoulli_p": 0.8,  # Not used for additive models
+        "feature_dim": 30,
+        "bernoulli_p": bernoulli_p_global,  # Not used for additive models
     },
     {
         "dgp_name": "additive_sparse_jump",  # Add. Jump
         "n_samples": 2000,
-        "feature_dim": 100,
-        "bernoulli_p": 0.8,  # Not used for additive models
+        "feature_dim": 30,
+        "bernoulli_p": bernoulli_p_global,  # Not used for additive models
     },
     {
         "dgp_name": "additive_sparse_smooth",  # Add. Smooth
         "n_samples": 2000,
-        "feature_dim": 100,
-        "bernoulli_p": 0.8,  # Not used for additive models
+        "feature_dim": 30,
+        "bernoulli_p": bernoulli_p_global,  # Not used for additive models
     },
     # 2D Cases (in specified order)
     {
         "dgp_name": "circular",
         "n_samples": 2000,
-        "feature_dim": 100,
-        "bernoulli_p": 0.8,
+        "feature_dim": 2,
+        "bernoulli_p": bernoulli_p_global,
     },
     {
         "dgp_name": "smooth_signal",  # Circular Smooth
         "n_samples": 2000,
-        "feature_dim": 100,
-        "bernoulli_p": 0.8,  # Not used for smooth_signal
+        "feature_dim": 2,
+        "bernoulli_p": bernoulli_p_global,  # Not used for smooth_signal
     },
     {
         "dgp_name": "rectangular",
         "n_samples": 2000,
-        "feature_dim": 100,
-        "bernoulli_p": 0.8,
+        "feature_dim": 2,
+        "bernoulli_p": bernoulli_p_global,
     },
     {
         "dgp_name": "sine_cosine",
         "n_samples": 2000,
-        "feature_dim": 100,
-        "bernoulli_p": 0.8,  # Not used for sine_cosine
+        "feature_dim": 2,
+        "bernoulli_p": bernoulli_p_global,  # Not used for sine_cosine
     },
 ]
 
@@ -333,7 +331,7 @@ median_results[numeric_cols] = median_results[numeric_cols].round(2)
 output_dir = "results"
 os.makedirs(output_dir, exist_ok=True)
 median_results.to_csv(
-    os.path.join(output_dir, "rf_simulation_d100.csv"),
+    os.path.join(output_dir, f"rf_simulation_clean_bernoulli_p_{bernoulli_p_global}.csv"),
     index=False,
 )
 
