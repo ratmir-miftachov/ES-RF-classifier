@@ -20,7 +20,7 @@ from src.utils.model_builder import build_rf_clf
 from src.utils import data_generation
 
 n_iterations = 300
-bernoulli_p_global = 0.65  # Global probability parameter used for all DGPs
+bernoulli_p_global = 0.6  # Global probability parameter used for all DGPs
 
 print(f"Using {cpu_count()} CPU cores for parallel processing")
 
