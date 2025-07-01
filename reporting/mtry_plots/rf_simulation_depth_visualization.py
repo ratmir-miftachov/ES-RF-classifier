@@ -17,7 +17,7 @@ plt.rcParams.update({
 })
 
 # Read the data
-df = pd.read_csv('reporting/results/saved/csvs/rf_simulation_B50.csv')
+df = pd.read_csv('results/rf_simulation_d100.csv')
 
 # Filter for IGES and MD_scikit methods only
 methods_of_interest = ['IGES', 'IGES_1', 'IGES_d', 'MD_scikit', 'MD_scikit_1', 'MD_scikit_d']
@@ -37,7 +37,7 @@ dataset_order = [
 
 # Create the visualization with all 8 DGPs in 2x4 layout
 fig, axes = plt.subplots(2, 4, figsize=(16, 8))
-fig.suptitle('Tree Depth: ES Random Forest (IGES) vs Deep Random Forest', fontsize=14, y=0.98)
+fig.suptitle('Tree Depth: ES Random Forest (IGES) vs Deep Random Forest (d=100)', fontsize=14, y=0.98)
 
 # Minimalistic color scheme - back to original colors
 uges_color = '#2E86AB'  # Blue for ES methods (keeping original name for consistency)
@@ -125,16 +125,16 @@ plt.tight_layout()
 plt.subplots_adjust(top=0.88, hspace=0.3, wspace=0.2)
 
 # Save the plot
-plt.savefig('results/rf_depth_comparison_plot.png', dpi=300, bbox_inches='tight')
+plt.savefig('results/rf_d100_depth_comparison_plot.png', dpi=300, bbox_inches='tight')
 
 # Show the plot
 plt.show()
 
-print("Depth visualization saved as 'results/rf_depth_comparison_plot.png'")
+print("Depth visualization saved as 'results/rf_d100_depth_comparison_plot.png'")
 
 # Print summary statistics focused on depth
 print("\n" + "="*60)
-print("DEPTH ANALYSIS SUMMARY")
+print("DEPTH ANALYSIS SUMMARY (d=100)")
 print("="*60)
 
 for dataset in dataset_order:

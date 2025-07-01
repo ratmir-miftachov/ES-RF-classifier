@@ -20,7 +20,7 @@ from src.utils.model_builder import build_rf_clf
 from src.utils import data_generation
 
 n_iterations = 300
-bernoulli_p_global = 0.6  # Global probability parameter used for all DGPs
+bernoulli_p_global = 0.55  # Global probability parameter used for all DGPs
 
 print(f"Using {cpu_count()} CPU cores for parallel processing")
 
@@ -246,25 +246,25 @@ dgp_configs = [
     {
         "dgp_name": "circular",
         "n_samples": 2000,
-        "feature_dim": 2,
+        "feature_dim": 10,
         "bernoulli_p": bernoulli_p_global,
     },
     {
         "dgp_name": "smooth_signal",  # Circular Smooth
         "n_samples": 2000,
-        "feature_dim": 2,
+        "feature_dim": 10,
         "bernoulli_p": bernoulli_p_global,  # Not used for smooth_signal
     },
     {
         "dgp_name": "rectangular",
         "n_samples": 2000,
-        "feature_dim": 2,
+        "feature_dim": 10,
         "bernoulli_p": bernoulli_p_global,
     },
     {
         "dgp_name": "sine_cosine",
         "n_samples": 2000,
-        "feature_dim": 2,
+        "feature_dim": 10,
         "bernoulli_p": bernoulli_p_global,  # Not used for sine_cosine
     },
 ]
@@ -331,7 +331,7 @@ median_results[numeric_cols] = median_results[numeric_cols].round(2)
 output_dir = "results"
 os.makedirs(output_dir, exist_ok=True)
 median_results.to_csv(
-    os.path.join(output_dir, f"rf_simulation_clean_bernoulli_p_{bernoulli_p_global}.csv"),
+    os.path.join(output_dir, f"rf_simulation_d10_p_{bernoulli_p_global}.csv"),
     index=False,
 )
 
