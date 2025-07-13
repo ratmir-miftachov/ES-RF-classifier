@@ -7,11 +7,6 @@ This repository contains the code the upcoming paper on early stopping for the t
 
 We develop and evaluate early stopping rules for classification tree ensembles and individual decision trees. The methods include both uniform and individual early stopping approaches that monitor training MSE with a threshold to prevent overfitting. Our implementation provides comparison between different early stopping strategies (uniform and individual stopping) and traditional methods, evaluating their performance across various data generating processes and empirical datasets. The early stopping methods achieve competitive classification performance while potentially reducing computational costs and model complexity. In particular, the interplay of depth and the mtry hyperparameter is of interest.
 
-## Visualization
-
-<div align="center">
-  <img src="docs/images/forest.png" alt="Random Forest Early Stopping" width="400">
-</div>
 
 ## Quick Start
 
