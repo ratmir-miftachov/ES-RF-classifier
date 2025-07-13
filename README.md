@@ -51,10 +51,6 @@ print(f"Test accuracy: {accuracy:.3f}")
 ## Repository Structure
 
 ```
-
-## Repository Structure
-
-```
 early_stopping_classification/
 ├── README.md
 ├── requirements.txt
