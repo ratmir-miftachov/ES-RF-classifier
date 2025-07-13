@@ -33,8 +33,8 @@ X_train, X_test, y_train, y_test = train_test_split(
 rf_clf, fit_duration = build_rf_clf(
     X_train=X_train,
     y_train=y_train,
-    f_train=None,  # No true function values for empirical data
-    algorithm="UGES",  # Uninformed Early Stopping
+    f_train=None,  
+    algorithm="UGES",  # Uniform Early Stopping
     max_features="sqrt",
     n_estimators=50,
     random_state=42
@@ -45,8 +45,7 @@ y_pred = rf_clf.predict(X_test)
 accuracy = np.mean(y_pred == y_test)
 
 print(f"Test accuracy: {accuracy:.3f}")
-print(f"Fit duration: {fit_duration:.3f} seconds")
-print(f"Dataset: {X.shape[0]} samples, {X.shape[1]} features")
+
 ```
 
 ## Repository Structure
