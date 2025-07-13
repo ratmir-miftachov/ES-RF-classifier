@@ -14,24 +14,26 @@ import numpy as np
 import pandas as pd
 import sys
 sys.path.append('.')
-from src.algorithms.EsGlobalRF import RandomForestClassifier as EsGlobalRF
+from openml import datasets
+from sklearn.model_selection import train_test_split
 from src.utils.model_builder import build_rf_clf
-from src.utils.data_generation import generate_X_y_f_classification
 
-# Generate sample classification data
-X_train, X_test, y_train, y_test, f_train, f_test = generate_X_y_f_classification(
-    dgp_name="circular",
-    bernoulli_p=0.6,
-    n_samples=1000,
-    feature_dim=10,
-    random_state=42
+# Load real dataset (Pima Indians Diabetes)
+dataset = datasets.get_dataset(43582)
+X, y, _, _ = dataset.get_data(target=dataset.default_target_attribute)
+X = X.to_numpy()
+y = y.to_numpy()
+
+# Split the data
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
 )
 
 # Build Random Forest with early stopping
 rf_clf, fit_duration = build_rf_clf(
     X_train=X_train,
     y_train=y_train,
-    f_train=f_train,
+    f_train=None,  # No true function values for empirical data
     algorithm="UGES",  # Uninformed Early Stopping
     max_features="sqrt",
     n_estimators=50,
@@ -44,6 +46,7 @@ accuracy = np.mean(y_pred == y_test)
 
 print(f"Test accuracy: {accuracy:.3f}")
 print(f"Fit duration: {fit_duration:.3f} seconds")
+print(f"Dataset: {X.shape[0]} samples, {X.shape[1]} features")
 ```
 
 ## Repository Structure
