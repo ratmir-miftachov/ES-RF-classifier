@@ -1,6 +1,6 @@
 # Early Stopping for the Random Forest Classifier
 
-This repository contains the code the upcoming paper on early stopping for the the random forest in a classification setting.
+This repository contains the code for the upcoming paper on early stopping for the the random forest in a classification setting.
 
 
 ## Abstract
