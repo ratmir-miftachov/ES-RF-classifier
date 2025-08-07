@@ -196,7 +196,7 @@ def build_rf_clf(
         rf.fit(X_train, y_train, f_train=f_train)
         end_time_rf = time.time()
         fit_duration = end_time_rf - start_time_rf
-    elif algorithm == "UGES":
+    elif algorithm == "UES":
         rf = mseRF(
             n_estimators=n_estimators,
             random_state=random_state,

@@ -19,12 +19,12 @@ plt.rcParams.update({
 # Read the data
 df = pd.read_csv('results/rf_simulation_clean_bernoulli_p_0.65.csv')
 
-# Filter for IGES and MD_scikit methods only
-methods_of_interest = ['IGES', 'IGES_1', 'IGES_d', 'MD_scikit', 'MD_scikit_1', 'MD_scikit_d']
+# Filter for IES and MD_scikit methods only
+methods_of_interest = ['IES', 'IES_1', 'IES_d', 'MD_scikit', 'MD_scikit_1', 'MD_scikit_d']
 df_filtered = df[df['method'].isin(methods_of_interest)].copy()
 
 # Extract base method and mtry setting
-df_filtered['base_method'] = df_filtered['method'].apply(lambda x: 'ES random forest (IGES)' if 'IGES' in x else 'deep random forest')
+df_filtered['base_method'] = df_filtered['method'].apply(lambda x: 'ES random forest (IES)' if 'IES' in x else 'deep random forest')
 df_filtered['mtry_setting'] = df_filtered['method'].apply(
     lambda x: '1' if x.endswith('_1') else 'd' if x.endswith('_d') else '√d'
 )
@@ -37,7 +37,7 @@ dataset_order = [
 
 # Create the visualization with all 8 DGPs in 2x4 layout
 fig, axes = plt.subplots(2, 4, figsize=(16, 8))
-fig.suptitle('Matthews Correlation Coefficient: ES Random Forest (IGES) vs Deep Random Forest (p=0.65)', fontsize=14, y=0.98)
+fig.suptitle('Matthews Correlation Coefficient: ES Random Forest (IES) vs Deep Random Forest (p=0.65)', fontsize=14, y=0.98)
 
 # Minimalistic color scheme - back to original colors
 uges_color = '#2E86AB'  # Blue for ES methods (keeping original name for consistency)
@@ -67,7 +67,7 @@ for dataset_idx, dataset in enumerate(dataset_order):
     mtry_labels = ['1', '√d', 'd']
     
     for mtry in mtry_labels:
-        es_row = dataset_data[(dataset_data['base_method'] == 'ES random forest (IGES)') & 
+        es_row = dataset_data[(dataset_data['base_method'] == 'ES random forest (IES)') & 
                              (dataset_data['mtry_setting'] == mtry)]
         deep_row = dataset_data[(dataset_data['base_method'] == 'deep random forest') & 
                                (dataset_data['mtry_setting'] == mtry)]
@@ -84,7 +84,7 @@ for dataset_idx, dataset in enumerate(dataset_order):
                    edgecolor='white', linewidth=1)
     
     bars2 = ax.bar(x_positions + width/2, es_data, width, 
-                   label='ES random forest (IGES)', color=uges_color, alpha=0.8, 
+                   label='ES random forest (IES)', color=uges_color, alpha=0.8, 
                    edgecolor='white', linewidth=1)
     
     # Customize subplot with minimal styling
@@ -113,7 +113,7 @@ for dataset_idx, dataset in enumerate(dataset_order):
 # Create simple legend (matching left-to-right order)
 legend_elements = [
     plt.Rectangle((0,0),1,1, facecolor=md_color, alpha=0.8, label='deep random forest'),
-    plt.Rectangle((0,0),1,1, facecolor=uges_color, alpha=0.8, label='ES random forest (IGES)')
+    plt.Rectangle((0,0),1,1, facecolor=uges_color, alpha=0.8, label='ES random forest (IES)')
 ]
 
 # Note: All 8 subplots are now used (4 additive + 4 low dimensional DGPs)
@@ -145,7 +145,7 @@ for dataset in dataset_order:
     print(f"\n{dataset}:")
     print("-" * len(dataset))
     
-    for method in ['ES random forest (IGES)', 'deep random forest']:
+    for method in ['ES random forest (IES)', 'deep random forest']:
         method_data = dataset_data[dataset_data['base_method'] == method]
         if method_data.empty:
             continue

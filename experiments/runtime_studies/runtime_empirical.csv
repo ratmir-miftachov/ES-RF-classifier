@@ -1,0 +1,7 @@
+Dataset,CCP (s),ES (s),TS (s),CCP/ES Ratio
+Banknote,3.4,0.080,3.35,43×
+Haberman,4.1,0.030,0.95,138×
+Ozone,227.7,0.970,46.97,235×
+Pima Indians,16.5,0.060,1.96,275×
+Spam,520.0,1.290,28.58,403×
+Wisc. Breast Cancer,1.8,0.060,1.36,30×

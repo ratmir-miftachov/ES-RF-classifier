@@ -120,9 +120,15 @@ class DecisionTreeLevelWise:
 
     def _node_prediction_value(self, y: np.ndarray) -> float:
         """
-        Calculate the prediction value for a node based on the mean of y.
+        Calculate the prediction value for a node based on majority class (CART logic).
         """
-        return np.mean(y)
+        # CART logic: Use majority class instead of mean for classification
+        # return np.mean(y)  # OLD: mean-based prediction (regression-style)
+        
+        # Count occurrences of each class and return the majority class
+        unique_classes, counts = np.unique(y, return_counts=True)
+        majority_class = unique_classes[np.argmax(counts)]
+        return float(majority_class)
 
     def _best_split(
         self, X: np.ndarray, y: np.ndarray, indices: List[int]
@@ -363,7 +369,13 @@ class DecisionTreeLevelWise:
             or node.right_child is None
             or (max_depth is not None and current_depth >= max_depth)
         ):
-            return [1 - node.node_prediction, node.node_prediction]
+            # CART logic: node.node_prediction is now the majority class (0 or 1)
+            # Convert to probability distribution
+            if node.node_prediction == 0:
+                return [1.0, 0.0]  # Class 0 with certainty
+            else:
+                return [0.0, 1.0]  # Class 1 with certainty
+            # OLD: return [1 - node.node_prediction, node.node_prediction]  # regression-style
 
         # Traverse to the appropriate child node
         if x[node.feature] <= node.split_threshold:

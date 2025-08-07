@@ -20,7 +20,7 @@ def create_latex_tables():
     
     # Define column mapping for methods/algorithms
     # DT methods: MD, CCP, ES, TS
-    # RF methods: MD_scikit, IGES, UGES
+    # RF methods: MD_scikit, IES, UES
     dt_method_mapping = {
         'MD': 'MD',
         'CCP': 'CCP', 
@@ -30,12 +30,12 @@ def create_latex_tables():
     
     rf_method_mapping = {
         'MD_scikit': 'MD_scikit',
-        'IGES': 'IGES',
-        'UGES': 'UGES'
+        'IES': 'IES',
+        'UES': 'UES'
     }
     
     # Column order as requested
-    column_order = ['MD', 'CCP', 'ES', 'TS', 'MD_scikit', 'IGES', 'UGES']
+    column_order = ['MD', 'CCP', 'ES', 'TS', 'MD_scikit', 'IES', 'UES']
     
     # Create empty dataframes for each table
     test_acc_table = pd.DataFrame(index=datasets, columns=column_order)

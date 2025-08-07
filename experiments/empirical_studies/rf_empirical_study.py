@@ -75,31 +75,31 @@ def load_dataset(dataset_name):
 
 # Define algorithm configurations
 ALGORITHM_CONFIGS = [
-    # UGES variants
+    # UES variants
     {
-        "algorithm": "UGES",
+        "algorithm": "UES",
         "vote_probability": False,
-        "algorithm_name": "UGES",
+        "algorithm_name": "UES",
         "es_offset": 0,
         "max_features": "sqrt",
     },
     {
-        "algorithm": "UGES",
+        "algorithm": "UES",
         "vote_probability": False,
-        "algorithm_name": "UGES_d",
+        "algorithm_name": "UES_d",
         "es_offset": 0,
         "max_features": None,  # mtry=d (all features)
     },
     {
-        "algorithm": "UGES",
+        "algorithm": "UES",
         "vote_probability": False,
-        "algorithm_name": "UGES_1",
+        "algorithm_name": "UES_1",
         "es_offset": 0,
         "max_features": 1,  # mtry=1 (single feature)
     },
-    # IGES variants
+    # IES variants
     {
-        "algorithm_name": "IGES",
+        "algorithm_name": "IES",
         "algorithm": "IES",
         "kappa": "1nn",
         "max_features": "sqrt",
@@ -108,7 +108,7 @@ ALGORITHM_CONFIGS = [
         "rf_train_mse": True,
     },
     {
-        "algorithm_name": "IGES_d",
+        "algorithm_name": "IES_d",
         "algorithm": "IES",
         "kappa": "1nn",
         "max_features": None,  # mtry=d (all features)
@@ -117,7 +117,7 @@ ALGORITHM_CONFIGS = [
         "rf_train_mse": True,
     },
     {
-        "algorithm_name": "IGES_1",
+        "algorithm_name": "IES_1",
         "algorithm": "IES",
         "kappa": "1nn",
         "max_features": 1,  # mtry=1 (single feature)
@@ -125,31 +125,31 @@ ALGORITHM_CONFIGS = [
         "es_offset": 0,
         "rf_train_mse": True,
     },
-    # ILES variants
-    {
-        "algorithm_name": "ILES",
-        "algorithm": "IES",
-        "kappa": "1nn",
-        "max_features": "sqrt",
-        "estimate_noise_before_sampling": True,
-        "es_offset": 0,
-    },
-    {
-        "algorithm_name": "ILES_d",
-        "algorithm": "IES",
-        "kappa": "1nn",
-        "max_features": None,  # mtry=d (all features)
-        "estimate_noise_before_sampling": True,
-        "es_offset": 0,
-    },
-    {
-        "algorithm_name": "ILES_1",
-        "algorithm": "IES", 
-        "kappa": "1nn",
-        "max_features": 1,  # mtry=1 (single feature)
-        "estimate_noise_before_sampling": True,
-        "es_offset": 0,
-    },
+    # ILES variants (commented out)
+    # {
+    #     "algorithm_name": "ILES",
+    #     "algorithm": "IES",
+    #     "kappa": "1nn",
+    #     "max_features": "sqrt",
+    #     "estimate_noise_before_sampling": True,
+    #     "es_offset": 0,
+    # },
+    # {
+    #     "algorithm_name": "ILES_d",
+    #     "algorithm": "IES",
+    #     "kappa": "1nn",
+    #     "max_features": None,  # mtry=d (all features)
+    #     "estimate_noise_before_sampling": True,
+    #     "es_offset": 0,
+    # },
+    # {
+    #     "algorithm_name": "ILES_1",
+    #     "algorithm": "IES", 
+    #     "kappa": "1nn",
+    #     "max_features": 1,  # mtry=1 (single feature)
+    #     "estimate_noise_before_sampling": True,
+    #     "es_offset": 0,
+    # },
     # MD_scikit variants
     {
         "algorithm": "MD_scikit",

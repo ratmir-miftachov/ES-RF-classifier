@@ -19,8 +19,8 @@ from src.algorithms.EsGlobalRF import RandomForestClassifier as EsGlobalRF
 from src.utils.model_builder import build_rf_clf
 from src.utils import data_generation
 
-n_iterations = 300
-bernoulli_p_global = 0.55  # Global probability parameter used for all DGPs
+n_iterations = 10
+bernoulli_p_global = 0.8  # Global probability parameter used for all DGPs
 
 print(f"Using {cpu_count()} CPU cores for parallel processing")
 
@@ -58,28 +58,28 @@ def run_single_iteration(seed, dgp_config):
     # Algorithm configurations matching rf_empirical_study.py
     rf_configs = [
         {
-            "method": "UGES",
-            "algorithm": "UGES",
+            "method": "UES",
+            "algorithm": "UES",
             "max_features": "sqrt",
             "vote_probability": False,
             "es_offset": 0,
         },
         {
-            "method": "UGES_d",
-            "algorithm": "UGES",
+            "method": "UES_d",
+            "algorithm": "UES",
             "max_features": None,  # mtry=d (all features)
             "vote_probability": False,
             "es_offset": 0,
         },
         {
-            "method": "UGES_1",
-            "algorithm": "UGES",
+            "method": "UES_1",
+            "algorithm": "UES",
             "max_features": 1,  # mtry=1 (single feature)
             "vote_probability": False,
             "es_offset": 0,
         },
         {
-            "method": "IGES",
+            "method": "IES",
             "algorithm": "IES",
             "kappa": "mean_var",  # Use true noise level instead of 1nn
             "max_features": "sqrt",
@@ -88,7 +88,7 @@ def run_single_iteration(seed, dgp_config):
             "rf_train_mse": True,
         },
         {
-            "method": "IGES_d",
+            "method": "IES_d",
             "algorithm": "IES",
             "kappa": "mean_var",  # Use true noise level instead of 1nn
             "max_features": None,  # mtry=d (all features)
@@ -97,7 +97,7 @@ def run_single_iteration(seed, dgp_config):
             "rf_train_mse": True,
         },
         {
-            "method": "IGES_1",
+            "method": "IES_1",
             "algorithm": "IES",
             "kappa": "mean_var",  # Use true noise level instead of 1nn
             "max_features": 1,  # mtry=1 (single feature)
@@ -105,30 +105,31 @@ def run_single_iteration(seed, dgp_config):
             "es_offset": 0,
             "rf_train_mse": True,
         },
-        {
-            "method": "ILES",
-            "algorithm": "IES",
-            "kappa": "mean_var",  # Use true noise level instead of 1nn
-            "max_features": "sqrt",
-            "estimate_noise_before_sampling": True,
-            "es_offset": 0,
-        },
-        {
-            "method": "ILES_d",
-            "algorithm": "IES",
-            "kappa": "mean_var",  # Use true noise level instead of 1nn
-            "max_features": None,  # mtry=d (all features)
-            "estimate_noise_before_sampling": True,
-            "es_offset": 0,
-        },
-        {
-            "method": "ILES_1",
-            "algorithm": "IES",
-            "kappa": "mean_var",  # Use true noise level instead of 1nn
-            "max_features": 1,  # mtry=1 (single feature)
-            "estimate_noise_before_sampling": True,
-            "es_offset": 0,
-        },
+        # ILES variants (commented out)
+        # {
+        #     "method": "ILES",
+        #     "algorithm": "IES",
+        #     "kappa": "mean_var",  # Use true noise level instead of 1nn
+        #     "max_features": "sqrt",
+        #     "estimate_noise_before_sampling": True,
+        #     "es_offset": 0,
+        # },
+        # {
+        #     "method": "ILES_d",
+        #     "algorithm": "IES",
+        #     "kappa": "mean_var",  # Use true noise level instead of 1nn
+        #     "max_features": None,  # mtry=d (all features)
+        #     "estimate_noise_before_sampling": True,
+        #     "es_offset": 0,
+        # },
+        # {
+        #     "method": "ILES_1",
+        #     "algorithm": "IES",
+        #     "kappa": "mean_var",  # Use true noise level instead of 1nn
+        #     "max_features": 1,  # mtry=1 (single feature)
+        #     "estimate_noise_before_sampling": True,
+        #     "es_offset": 0,
+        # },
         {
             "method": "MD_scikit",
             "algorithm": "MD_scikit",
@@ -246,25 +247,25 @@ dgp_configs = [
     {
         "dgp_name": "circular",
         "n_samples": 2000,
-        "feature_dim": 10,
+        "feature_dim": 2,
         "bernoulli_p": bernoulli_p_global,
     },
     {
         "dgp_name": "smooth_signal",  # Circular Smooth
         "n_samples": 2000,
-        "feature_dim": 10,
+        "feature_dim": 2,
         "bernoulli_p": bernoulli_p_global,  # Not used for smooth_signal
     },
     {
         "dgp_name": "rectangular",
         "n_samples": 2000,
-        "feature_dim": 10,
+        "feature_dim": 2,
         "bernoulli_p": bernoulli_p_global,
     },
     {
         "dgp_name": "sine_cosine",
         "n_samples": 2000,
-        "feature_dim": 10,
+        "feature_dim": 2,
         "bernoulli_p": bernoulli_p_global,  # Not used for sine_cosine
     },
 ]
@@ -331,7 +332,7 @@ median_results[numeric_cols] = median_results[numeric_cols].round(2)
 output_dir = "results"
 os.makedirs(output_dir, exist_ok=True)
 median_results.to_csv(
-    os.path.join(output_dir, f"rf_simulation_d10_p_{bernoulli_p_global}.csv"),
+    os.path.join(output_dir, f"rf_simulation_d2_p_{bernoulli_p_global}.csv"),
     index=False,
 )
 

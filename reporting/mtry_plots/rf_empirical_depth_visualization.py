@@ -19,12 +19,12 @@ plt.rcParams.update({
 # Read the data
 df = pd.read_csv('results/rf_empirical_study_median.csv')
 
-# Filter for IGES and MD_scikit methods only
-methods_of_interest = ['IGES', 'IGES_1', 'IGES_d', 'MD_scikit', 'MD_scikit_1', 'MD_scikit_d']
+# Filter for IES and MD_scikit methods only
+methods_of_interest = ['IES', 'IES_1', 'IES_d', 'MD_scikit', 'MD_scikit_1', 'MD_scikit_d']
 df_filtered = df[df['algorithm_name'].isin(methods_of_interest)].copy()
 
 # Extract base method and mtry setting
-df_filtered['base_method'] = df_filtered['algorithm_name'].apply(lambda x: 'ES random forest' if 'IGES' in x else 'deep random forest')
+df_filtered['base_method'] = df_filtered['algorithm_name'].apply(lambda x: 'ES random forest' if 'IES' in x else 'deep random forest')
 df_filtered['mtry_setting'] = df_filtered['algorithm_name'].apply(
     lambda x: '1' if x.endswith('_1') else 'd' if x.endswith('_d') else '√d'
 )
@@ -36,7 +36,7 @@ dataset_order = [
 
 # Create the visualization with depth plots in 2x3 layout
 fig, axes = plt.subplots(2, 3, figsize=(12, 8))
-fig.suptitle('Tree Depth (Median): ES Random Forest (IGES) vs Deep Random Forest on Empirical Datasets', fontsize=14, y=0.98)
+fig.suptitle('Tree Depth (Median): ES Random Forest (IES) vs Deep Random Forest on Empirical Datasets', fontsize=14, y=0.98)
 
 # Minimalistic color scheme
 uges_color = '#2E86AB'  # Blue
@@ -137,7 +137,7 @@ print("Visualization saved as 'results/rf_empirical_depth_comparison_plot.png'")
 
 # Print summary statistics
 print("\n" + "="*80)
-print("EMPIRICAL DATASETS MEDIAN DEPTH SUMMARY STATISTICS (IGES)")
+print("EMPIRICAL DATASETS MEDIAN DEPTH SUMMARY STATISTICS (IES)")
 print("="*80)
 
 for dataset in dataset_order:
