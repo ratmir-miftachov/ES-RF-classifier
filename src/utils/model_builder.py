@@ -98,62 +98,65 @@ def build_rf_clf(
         end_time_rf = time.time()
         fit_duration = end_time_rf - start_time_rf
 
-    elif algorithm == "UES":
-        if kappa == "mean_var":
-            noise_est_time_start = time.time()
-            mean_estimated_train_noise = np.mean(f_train * (1 - f_train))
-            noise_est_time_end = time.time()
-            noise_est_time = noise_est_time_end - noise_est_time_start
-        elif kappa == "1nn":
-            noise_estimator = noise_est.Estimator(X_train, y_train)
-            noise_est_time_start = time.time()
-            mean_estimated_train_noise = noise_estimator.estimate_1NN()
-            noise_est_time_end = time.time()
-            noise_est_time = noise_est_time_end - noise_est_time_start
-        else:
-            raise ValueError(f"Invalid kappa: {kappa}")
+    # elif algorithm == "UES":
+    #     if kappa == "mean_var":
+    #         noise_est_time_start = time.time()
+    #         mean_estimated_train_noise = np.mean(f_train * (1 - f_train))
+    #         noise_est_time_end = time.time()
+    #         noise_est_time = noise_est_time_end - noise_est_time_start
+    #     elif kappa == "1nn":
+    #         noise_estimator = noise_est.Estimator(X_train, y_train)
+    #         noise_est_time_start = time.time()
+    #         mean_estimated_train_noise = noise_estimator.estimate_1NN()
+    #         noise_est_time_end = time.time()
+    #         noise_est_time = noise_est_time_end - noise_est_time_start
+    #     else:
+    #         raise ValueError(f"Invalid kappa: {kappa}")
 
-        tree = custom_tree(
-            max_depth=None,
-            min_samples_split=2,
-            kappa=mean_estimated_train_noise,
-            max_features=max_features,
-            random_state=random_state,
-        )
-        tree.fit(X_train, y_train)
-        es_depth = tree.get_depth()
-        if es_offset is not None:
-            es_depth = es_depth + es_offset
-        es_depth = max(es_depth, 1)
-        scikit_tree = DecisionTreeClassifier(
-            max_depth=es_depth,
-            min_samples_split=2,
-            max_features=max_features,
-            random_state=random_state,
-        )
-        single_tree_start_time = time.time()
-        scikit_tree.fit(X_train, y_train)
-        single_tree_end_time = time.time()
-        single_tree_fit_duration = single_tree_end_time - single_tree_start_time
+    #     tree = custom_tree(
+    #         max_depth=None,
+    #         min_samples_split=2,
+    #         kappa=mean_estimated_train_noise,
+    #         max_features=max_features,
+    #         random_state=random_state,
+    #     )
+    #     tree.fit(X_train, y_train)
+    #     es_depth = tree.get_depth()
+    #     if es_offset is not None:
+    #         es_depth = es_depth + es_offset
+    #     es_depth = max(es_depth, 1)
+    #     scikit_tree = DecisionTreeClassifier(
+    #         max_depth=es_depth,
+    #         min_samples_split=2,
+    #         max_features=max_features,
+    #         random_state=random_state,
+    #     )
+    #     single_tree_start_time = time.time()
+    #     scikit_tree.fit(X_train, y_train)
+    #     single_tree_end_time = time.time()
+    #     single_tree_fit_duration = single_tree_end_time - single_tree_start_time
 
-        rf = scikit_rf(
-            n_estimators=n_estimators,
-            criterion="gini",
-            max_depth=es_depth,
-            min_samples_split=2,
-            max_features=max_features,
-            bootstrap=True,
-            oob_score=False,
-            ccp_alpha=0.0,
-            max_samples=None,
-            n_jobs=None,
-            random_state=random_state,
-        )
-        start_time_rf = time.time()
-        rf.fit(X_train, y_train)
-        end_time_rf = time.time()
-        rf_fit_duration = end_time_rf - start_time_rf
-        fit_duration = rf_fit_duration + single_tree_fit_duration + noise_est_time
+    #     rf = scikit_rf(
+    #         n_estimators=n_estimators,
+    #         criterion="gini",
+    #         max_depth=es_depth,
+    #         min_samples_split=2,
+    #         max_features=max_features,
+    #         bootstrap=True,
+    #         oob_score=False,
+    #         ccp_alpha=0.0,
+    #         max_samples=None,
+    #         n_jobs=None,
+    #         random_state=random_state,
+    #     )
+    #     start_time_rf = time.time()
+    #     rf.fit(X_train, y_train)
+    #     end_time_rf = time.time()
+    #     rf_fit_duration = end_time_rf - start_time_rf
+    #     fit_duration = rf_fit_duration + single_tree_fit_duration + noise_est_time
+        
+        
+        
     elif algorithm == "MD_custom":
         rf = ESGlobalRF.RandomForestClassifier(
             n_estimators=n_estimators,

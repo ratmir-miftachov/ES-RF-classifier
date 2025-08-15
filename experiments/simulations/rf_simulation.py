@@ -161,7 +161,7 @@ def run_single_iteration(seed, dgp_config):
             es_offset=config.get("es_offset"),
             rf_train_mse=config.get("rf_train_mse"),
             kappa=config.get("kappa"),
-            n_estimators=50,  # number of trees in the forest
+            n_estimators=2,  # number of trees in the forest
             vote_probability=config.get("vote_probability"),
             estimate_noise_before_sampling=config.get("estimate_noise_before_sampling"),
             random_state=seed,

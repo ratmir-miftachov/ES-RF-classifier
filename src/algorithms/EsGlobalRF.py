@@ -261,17 +261,11 @@ class RandomForestClassifier(object):
             y_pred_labels_single_tree = model.predict(X)
             # append predictions to storage list
             predictions.append(y_pred_labels_single_tree.reshape(-1, 1))
-        # compute the ensemble prediction using CART majority voting
-        # OLD: y_pred_labels_ensemble = np.round(
-        #     np.mean(np.concatenate(predictions, axis=1), axis=1)
-        # ).astype(int)  # This was regression-style averaging then rounding
+        # regression-style averaging (of binary values) then rounding
+        y_pred_labels_ensemble = np.round(
+            np.mean(np.concatenate(predictions, axis=1), axis=1)
+        ).astype(int)
         
-        # CART logic: True majority voting across tree predictions
-        predictions_array = np.concatenate(predictions, axis=1)  # Shape: (n_samples, n_trees)
-        y_pred_labels_ensemble = np.array([
-            np.bincount(row.astype(int)).argmax() for row in predictions_array
-        ])  # True majority vote for each sample
-        # return the prediction
         return y_pred_labels_ensemble
 
     def predict_proba(
@@ -286,18 +280,16 @@ class RandomForestClassifier(object):
         # loop through each fitted model
         predictions = []
         for model in self.estimators_[:n_trees]:
-            # CART logic: Use hard predictions (0/1) from each tree for probability calculation
-            y_pred_labels_single_tree = model.predict(X)  # Get hard class predictions
-            # OLD: y_pred_prob_single_tree = model.predict_proba(X)[:, 1]  # regression-style probabilities
-            
+            # make predictions on the input X
+            y_pred_prob_single_tree = model.predict_proba(X)[:, 1]
             # append predictions to storage list
             predictions.append(
-                y_pred_labels_single_tree.reshape(-1, 1)
+                y_pred_prob_single_tree.reshape(-1, 1)
             )  # each entry is a column
-        # compute the ensemble prediction using CART probability logic        
-        # CART logic: Probability = proportion of trees predicting class 1
-        predictions_array = np.concatenate(predictions, axis=1)  # Shape: (n_samples, n_trees)
-        y_pred_prob_ensemble = np.mean(predictions_array, axis=1)  # Proportion voting for class 1
+        # compute the ensemble prediction
+        y_pred_prob_ensemble = np.mean(
+            np.concatenate(predictions, axis=1), axis=1
+        )  # conc = column stack, axis=1 je zeile mean nehmen/über columns
         y_pred_prob_ensemble = np.column_stack(
             (1 - y_pred_prob_ensemble, y_pred_prob_ensemble)
         )
